@@ -1,0 +1,77 @@
+/*------------------------------------*\
+   COOKIES CONSENT
+\*------------------------------------*/
+
+
+/*
+ * Styles for cookies consent bar
+ */
+
+#cookiesconsent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index:50;
+
+    .cc-window {
+        text-align: center;
+        font-family: @font;
+        padding: 15px 20px;
+        color: @white;
+        background: @black;
+
+        &.cc-invisible {
+            display: none;
+        }
+    }
+
+    .cc-banner {
+        @media (min-width: @screen-sm-min) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .cc-compliance {
+        flex-shrink: 0;
+    }
+
+    .cc-message {
+        font-size: 14px; line-height:18px;
+        text-align: center;
+        display: block;
+
+        a {
+            color:@white;
+            text-decoration: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .cc-btn {
+        display: inline-block;
+        flex: 1;
+        padding: 8px 24px;
+        background-color: @white;
+        cursor: pointer;
+        border-radius: 34px;
+        font: bold 14px/18px @font;
+        transition: 0.6s background-color @defaultEase;
+        color: @mainColor;
+        margin: 10px 0 0 0;
+
+        &:hover {
+            background-color: @white;
+            color: @mainColor;
+        }
+
+        @media (min-width: @screen-sm-min) {
+            margin: 0 0 0 10px;
+        }
+    }
+}

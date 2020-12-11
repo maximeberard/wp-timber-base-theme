@@ -1,0 +1,33 @@
+{
+  "name": "TimberBaseTheme",
+  "version": "0.1.0",
+  "homepage": "http://www.url.com",
+  "authors": [
+    "Maxime Bérard <contact@maximeberard.com>"
+  ],
+  "description": "TimberBaseTheme",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "gsap": "~1.18.5",
+    "jquery": "~2.2.0",
+    "waitForImages": "~2.2.0",
+    "requirejs": "^2.2.0",
+    "starting-blocks": "1.0.5",
+    "bootstrap": "~3.3.4",
+    "normalize.css": "~3.0.3",
+    "jquery.actual": "~1.0.16",
+    "isMobile": "~0.3.6",
+    "flag-icon-css": "~1.4.0",
+    "hammerjs": "~2.0.6",
+    "loglevel": "~1.4.1",
+    "waypoints": "^4.0.1",
+    "masonry-layout": "^4.2.1"
+  }
+}
