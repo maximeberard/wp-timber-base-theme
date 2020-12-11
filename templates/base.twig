@@ -1,6 +1,7 @@
-{% import 'common/macros.twig' as macros %}
+{% import '@templates/common/macros.twig' as macros %}
 
-{% include 'common/header.twig' %}
+{% include '@templates/common/header.twig' %}
+
 
 <body class="{{body_class}}" data-template="base.twig">
 
@@ -24,7 +25,8 @@
 
 				<div id="nav-list">
 					<a class="nav-link nav-link-home" id="nav-link-home" href="{{site.url}}" rel="home">{{site.name}}</a>
-					{% include "common/menu.twig" with {'items': menu.get_items} %}
+					{% include "@templates/common/menu.twig" with {'items': menu.get_items} %}
+
 				</div>
 
 				<!-- <div id="nav-lang"></div> -->
@@ -39,4 +41,4 @@
 		<div id="ajax-container"></div>
 	</div>
 
-	{% include 'common/footer.twig' %}</body>
+	{% include '@templates/common/footer.twig' %}</body>

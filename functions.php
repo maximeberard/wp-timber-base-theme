@@ -35,6 +35,11 @@ if ( file_exists( $composer_autoload ) ) {
 	$timber = new Timber\Timber();
 }
 
+add_filter('timber/loader/loader', function($loader){
+	$loader->addPath(__DIR__ . "/templates", "templates");
+	return $loader;
+});
+
 /**
  * This ensures that Timber is loaded and available as a PHP class.
  * If not, it gives an error message to help direct developers on where to activate

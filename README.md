@@ -2,14 +2,14 @@
 
 Custom Wordpress base theme using [Timber Starter theme](https://github.com/timber/starter-theme) and [BaseTheme](https://github.com/roadiz/BaseTheme) made for [Roadiz CMS](http://www.roadiz.io).
 
-* **Find and replace** every `TimberBaseTheme` occurences over this folder using your own theme name, verify in:
-    * Absolute paths in `bootstrap.js`
+* **Find and replace** every `TimberBaseTheme` occurences over this folder using your own theme name
 * Rename `http://www.url.com` with your site URL.
+* Don't forget to also change your base project folder in `bootstrap.js` and replace `wordpress` with your own base project name. 
+
 
 If you want to rename your theme, you will have to replace all `wp-timber-base-theme` occurences in this folder with your new folder name.
 You can also change your site description, replacing `SiteDescription` by your own custom description or use WP site desc.
 
-Don't forget to also change your base project folder in `bootstrap.js` and replace `wordpress` with your own base project name. 
 
 * Launch `bower install` and `npm install` in your theme folder to install *NPM* and *Bower* vendor and launch *Gulp* tasks for the first time.
 
