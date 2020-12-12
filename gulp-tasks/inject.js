@@ -33,7 +33,7 @@ gulp.task('inject-js', ['requirejs'], function () {
         .pipe(inject(builtFiles, {
             transform: transformFunc
         }))
-        .pipe(gulp.dest(''));
+        .pipe(gulp.dest('templates/common'));
 });
 
 gulp.task('inject-css', ['css'], function () {
@@ -43,5 +43,5 @@ gulp.task('inject-css', ['css'], function () {
         .pipe(inject(builtFiles, {
             transform: transformFunc
         }))
-        .pipe(gulp.dest(''));
+        .pipe(gulp.dest('templates/common'));
 });

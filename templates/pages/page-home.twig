@@ -1,7 +1,7 @@
-{% extends "base.twig" %}
+{% extends "@templates/base.twig" %}
 
 {% block content %}
-<div class="page-container page-container-{{ post.post_type }}" data-node-type="page" id="page-container-{{post.ID}}" data-is-home="1">
+<div class="page-container" data-node-type="page" id="page-container-{{post.ID}}" data-is-home="1">
 
 	<div class="page-content-title">
 		<div class="container">
@@ -11,11 +11,9 @@
 
 	<div class="page-content page-content-{{post.post_type}}" id="{{post.ID}}-content">
 		<div class="container">
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
 			{{post.content}}
 		</div>
 	</div>
 
 </div>
-
 {% endblock %}
