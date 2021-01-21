@@ -54,5 +54,5 @@ gulp.task('svgstore', ['clean-svg'], function () {
             inlineSvg: true
         }))
         .pipe(rename("sprite.twig"))
-        .pipe(gulp.dest('svg'));
+        .pipe(gulp.dest('templates/svg'));
 });
