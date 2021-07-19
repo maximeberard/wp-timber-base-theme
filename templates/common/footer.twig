@@ -4,6 +4,7 @@
 	<div id="cookiesconsent"></div>
 	
 	{% set devMode = (site.url == 'http://localhost:8888/wordpress') ? true : false %}
+	{% set legalsId = 3 %}
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
 
@@ -26,7 +27,7 @@
 				message: "En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies à des fins de mesures d’audience.",
 				dismiss: "Fermer",
 				link: "En savoir plus",
-				href: "<?php echo get_permalink($legalsId); ?>"
+				href: "{{ function('get_permalink', legalsId) }}"
 			}
 			})
 		});
