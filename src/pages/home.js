@@ -6,20 +6,20 @@
  * @author Maxime Bérard
  */
 
-import {AbstractPage} from "abstract-page";
-// import {DefaultPage} from "pages/default-page";
+// import {AbstractPage} from "abstract-page";
+import { DefaultPage } from "pages/default-page";
 
-export class Home extends AbstractPage { // extends DefaultPage
+export class Home extends DefaultPage { // extends AbstractPage
 
-    init(){
+    init() {
         super.init();
     }
 
-    initEvents(){
+    initEvents() {
         super.initEvents();
     }
 
-    destroyEvents(){
+    destroyEvents() {
         super.destroyEvents();
     }
 }
