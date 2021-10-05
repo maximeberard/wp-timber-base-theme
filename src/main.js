@@ -17,11 +17,11 @@ import { ClassFactory } from "class-factory";
  * Set max log level (most verbose) 0 ---> 5
  * @see https://github.com/pimterry/loglevel
  */
-if (temp.devMode && true === temp.devMode) {
-    log.setLevel(0);
-} else {
-    log.setLevel(5);
-}
+// if (temp.devMode && true === temp.devMode) {
+//     log.setLevel(0);
+// } else {
+//     log.setLevel(5);
+// }
 
 /**
  * Set default Tween ease
@@ -32,7 +32,7 @@ TweenLite.defaultEase = Expo.easeOut;
  * Log credits
  */
 // Utils.logCredits(
-//     'BaseTheme',
+//     'TimberBaseTheme',
 //     '#fff',
 //     [
 //         { name:'DEVELOPER', website:'www.developer.com' }

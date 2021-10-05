@@ -3,10 +3,8 @@
 \*------------------------------------*/
 
 
-/*
- * Styles for nav
- */
 @navbar-height: 50px;
+// @navbar-height-xs : 50px;
 @nav-height : 68px;
 
 // --- Navbar --- //
@@ -15,7 +13,7 @@
     top:0; right:0; left:0;
     height:@navbar-height;
     background: @white;
-    border-bottom:1px solid #DADADA;
+    // border-bottom:1px solid #DADADA;
     z-index:55;
 }
 
@@ -86,6 +84,10 @@
     margin:0;
     padding:80px 15px 10px;
     width:100%;
+
+    ul{
+        margin: 0; padding: 0;
+    }
 
     @media (min-width: @screen-sm-min) {
         float: left;
