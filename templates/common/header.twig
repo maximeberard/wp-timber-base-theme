@@ -8,13 +8,12 @@ class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
 
 	{% set shareImage = site.theme.link ~ '/img/share-image.jpg'  %}
 	
-	<title>{{ site.name }} - {{ site.description }}</title>
+	<title>{{ function('wp_title') }} - {{ site.description }}</title>
+	{# {{ site.name }} - {{ site.description }} #}
 
 	<meta charset="{{ site.charset }}"/>
 	<meta name="description" content="{{ site.description }}">
 	<link rel="stylesheet" href="{{ site.theme.link }}/style.css" type="text/css" media="screen"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="author" href="{{ site.theme.link }}/humans.txt"/>
 
@@ -43,7 +42,7 @@ class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
 	<meta name="twitter:card" content="summary"/>
 	<meta name="twitter:title" content="TimberBaseTheme - SiteDescription"/>
 	<meta name="twitter:description" content="TimberBaseTheme - SiteDescription"/>
-	<meta name="twitter:site" content="@twitteraccount"/>
+	{# <meta name="twitter:site" content="@twitteraccount"/> #}
 	<meta name="twitter:url" content="http://www.url.com"/>
 	<meta name="twitter:image" content="{{ shareImage }}"/>
 

@@ -26,21 +26,21 @@ import { ClassFactory } from "class-factory";
 /**
  * Set default Tween ease
  */
-TweenLite.defaultEase = Expo.easeOut;
+TweenLite.defaultEase = Quart.easeOut;
 
 /**
  * Log credits
  */
 // Utils.logCredits(
 //     'TimberBaseTheme',
-//     '#fff',
+//     '#fff', // bg-color
 //     [
-//         { name:'DEVELOPER', website:'www.developer.com' }
+//         { name: 'Maxime Bérard', website: 'www.maximeberard.com' }
 //     ],
 //     [
 //         { name: 'Starting Blocks', website: 'https://startingblocks.rezo-zero.com' },
 //     ],
-//     '#000'
+//     '#000' // text-color
 // );
 
 /*
