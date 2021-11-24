@@ -35,10 +35,12 @@ TweenLite.defaultEase = Quart.easeOut;
 //     'TimberBaseTheme',
 //     '#fff', // bg-color
 //     [
-//         { name: 'Maxime Bérard', website: 'www.maximeberard.com' }
+//         { name: 'Made by : Maxime Bérard', website: 'www.maximeberard.com' }
 //     ],
 //     [
 //         { name: 'Starting Blocks', website: 'https://startingblocks.rezo-zero.com' },
+//         { name: 'Timber', website: 'https://upstatement.com/timber' }
+
 //     ],
 //     '#000' // text-color
 // );
