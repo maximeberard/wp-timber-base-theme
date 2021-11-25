@@ -8,9 +8,13 @@ import { gaTrackErrors } from "utils/gaTrackErrors";
 import { Nav } from "common/nav";
 import { Router } from "router";
 import { GraphicLoader } from "graphicLoader";
-import { Loader } from "common/loader";
+// import { Loader } from "common/loader";
 import { ClassFactory } from "class-factory";
+// import { BootstrapMedia } from "utils/bootstrapMedia";
 // import { waypoint } from 'waypoint';
+// import scrollTo from "scrollTo";
+// import Masonry from "masonry";
+// import Hammer from "Hammer";
 // import actual from 'actual';
 
 /**
@@ -83,12 +87,18 @@ if (navigator.userAgent.indexOf('MSIE') >= 0 ||
 const router = new Router(
     {
         homeHasClass: false,
-        ajaxEnabled: false,
         lazyloadEnabled: true,
-        pageClass: 'page-container'
+        pageClass: 'page-container',
+        ajaxEnabled: false,
+        // ajaxLinkTypeAttr: 'data-node-type-target',
+        // minLoadDuration: 1500,
+        // preLoadPageDelay: 0,
+        // prePushState: function (state) {
+        // this.page.prePushState(state);
+        // }
     },
     new ClassFactory(),
-    // temp namespace is defined in your footer.php file
+    // temp namespace is defined in your footer.twig file
     temp.baseUrl,
     new GraphicLoader(), // Loader()
     new Nav()
