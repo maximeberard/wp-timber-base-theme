@@ -20,9 +20,18 @@
  */
 
 add_theme_support('post-thumbnails');
-add_image_size('1200x630', 1200, 630, true); // 1200x630 (social share image)
-// add_image_size('360x360', 360, 360, true); // Custom thumbnail
-
+add_image_size('1200x630', 1200, 630, true);
+// square
+add_image_size('640x640', 640, 640, true); 
+add_image_size('360x360', 360, 360, true);
+// just width
+add_image_size('1920w', 1920, 999, false);
+add_image_size('1480w', 1480, 999, false);
+add_image_size('1140w', 1140, 999, false);
+add_image_size('980w', 980, 999, false);
+add_image_size('640w', 640, 999, false);
+add_image_size('460w', 460, 999, false);
+add_image_size('360w', 360, 999, false);
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block

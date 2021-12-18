@@ -3,16 +3,20 @@
 {% block content %}
 <div class="page-container page-container-{{ post.post_type }}" data-node-type="page" id="page-container-{{post.slug}}" data-is-home="0">
 
-	<div class="page-content-title">
-		<div class="container">
-			<h1 class="page-title">{{post.title}}</h1>
-		</div>
-	</div>
-
 	<div class="page-content page-content-{{post.post_type}}" id="{{post.slug}}-content">
 		<div class="container">
+			<h1 class="page-title">{{post.title}}</h1>
 			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
 			{{post.content}}
+			<div class="page-nav {{ post.post_type }}-nav">
+				{% if previousPost %}
+				<a class="page-nav-link prev" href="{{ function('get_permalink', previousPost.ID) }} ">{{ previousPost.post_title }}</a>
+				{% endif %}
+				{% if nextPost %}
+				<a class="page-nav-link next" href="{{ function('get_permalink', nextPost.ID) }} ">{{ nextPost.post_title }}
+				</a>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 

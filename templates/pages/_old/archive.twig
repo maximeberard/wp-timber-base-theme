@@ -6,17 +6,11 @@
 {% block content %}
 <div class="page-container" data-node-type="page" id="page-container-{{post.ID}}" data-is-home="0">
 
-  <div class="page-content-title">
-    <div class="container">
-      <h1 class="page-title">This is my archive</h1>
-    </div>
-  </div>
-
   {{ parent() }}
   
-
   <div class="page-content page-content-{{post.post_type}}" id="{{post.ID}}-content">
     <div class="container">
+      <h1 class="page-title">This is my archive</h1>
       {{post.content}}
     </div>
   </div>

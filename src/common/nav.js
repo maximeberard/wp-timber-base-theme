@@ -6,10 +6,11 @@
  * @author Maxime Bérard
  */
 import $ from 'jquery';
+// import scrollTo from "scrollTo";
 import { Utils } from "utils/utils";
-import { BootstrapMedia } from "utils/bootstrapMedia";
 import { debounce } from "utils/debounce";
 import { AbstractNav } from 'abstract-nav';
+import { BootstrapMedia } from "utils/bootstrapMedia";
 
 export class Nav extends AbstractNav {
     constructor() {
@@ -29,6 +30,8 @@ export class Nav extends AbstractNav {
         this.$btnBar = this.$bar.find('.nav-btn-bar');
         // this.$barBg = $('#navbar-bg');
 
+        // this.$backTop = $('#back-top');
+
         this.minifyLimit = BootstrapMedia.isMinMD() ? 165 : 50;
 
         this.opened = false;
@@ -44,6 +47,8 @@ export class Nav extends AbstractNav {
         this.$btn.on('click', this.btnClick.bind(this));
         if (this.hasOverlay) this.$overlay.on('click', this.close.bind(this));
 
+        // this.$backTop.on('click', this.backTopOnClick.bind(this));
+
         // window.addEventListener('keyup', this.onKeyUp.bind(this));
         window.addEventListener('scroll', this.onScroll.bind(this));
         window.addEventListener('resize', debounce(this.onResize.bind(this), 100, false));
@@ -58,6 +63,8 @@ export class Nav extends AbstractNav {
 
         this.$btn.off('click', this.btnClick.bind(this));
         if (this.hasOverlay) this.$overlay.off('click', this.close.bind(this));
+
+        // this.$backTop.off('click', this.backTopOnClick.bind(this));
 
         // window.removeEventListener('keyup', this.onKeyUp.bind(this));
         window.removeEventListener('scroll', this.onScroll.bind(this));
@@ -150,6 +157,11 @@ export class Nav extends AbstractNav {
 
             this.opened = false;
         }
+    }
+
+    backTopOnClick(e) {
+        TweenLite.to(window, 0.6, { scrollTo: { y: 0 } });
+        e.preventDefault();
     }
 
     onResize() {

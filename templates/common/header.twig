@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<!--[if lt IE 9]><html class="no-js no-svg ie lt-ie9 lt-ie8 lt-ie7" {{ site.language_attributes }}> <![endif]-->
-<!--[if IE 9]><html class="no-js no-svg ie ie9 lt-ie9 lt-ie8" {{ site.language_attributes }}> <![endif]-->
-<!--[if gt IE 9]><!-->
-<html
-class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
-<head>
+<html class="no-js" {{ site.language_attributes }} itemscope itemtype="http://schema.org/WebPage">
+	<head>
 
-	{% set shareImage = site.theme.link ~ '/img/share-image.jpg'  %}
-	
+{% set shareImage = site.theme.link ~ '/img/share-image.jpg'  %}
+{% if post %}
+	{% if post.thumbnail %}
+		{% set shareImage = post.thumbnail.src('1200x630')  %}
+	{% endif %}
+	{# {% if post.meta('share_image') %}
+		{% set shareImage = post.meta('share_image')  %}
+	{% endif %} #}
+{% endif %}
+
+
 	<title>{{ function('wp_title') }} - {{ site.description }}</title>
 	{# {{ site.name }} - {{ site.description }} #}
 
@@ -18,11 +23,11 @@ class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
 	<link rel="author" href="{{ site.theme.link }}/humans.txt"/>
 
 	<!-- Favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="{{ site.theme.link }}/img/favicons/apple-touch-icon.png">
-	<link rel="icon" type="image/png" href="{{ site.theme.link }}/img/favicons/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="{{ site.theme.link }}/img/favicons/favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="{{ site.theme.link }}/img/favicons/site.webmanifest">
-	<link rel="mask-icon" href="{{ site.theme.link }}/img/favicons/safari-pinned-tab.svg" color="#ffffff">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff">
 	<meta name="theme-color" content="#ffffff">
 
 	<!-- Facebook  -->
@@ -49,9 +54,20 @@ class="no-js no-svg" {{ site.language_attributes }}> <!--<![endif]-->
 	# @see gulp-tasks/inject.js
 	-->
 	<!-- inject:css -->
-	<link rel="stylesheet" href="{{ site.theme.link }}/css/vendor-ca20979732.css"> 
+	<link rel="stylesheet" href="{{ site.theme.link }}/css/vendor-ca20979732.css">
 	<link rel="stylesheet" href="{{ site.theme.link }}/css/style-ba992f61b0.css">
 	<!-- endinject -->
+
+	{# {% set gtagId = '' %}
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{ gtagId }}"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config',{{ gtagId }});
+	</script> #}
 
 	<script src="{{ site.theme.link }}/vendor/modernizr-custom.js"></script>
 

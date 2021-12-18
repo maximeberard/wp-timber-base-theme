@@ -13,7 +13,6 @@
     top:0; right:0; left:0;
     height:@navbar-height;
     background: @white;
-    // border-bottom:1px solid #DADADA;
     z-index:55;
 }
 
@@ -64,17 +63,13 @@
     position:fixed;
     display: none;
     top:0; right:0; bottom:0; left:0;
-    // width:80%;
     background: @white;
     z-index:50;
-    // transform:translateX(-100%);
 
     @media (min-width: @screen-sm-min) {
         display: block;
         right:0; bottom:initial;
         width:auto; height:@nav-height;
-        transform:none;
-        // border-bottom: 1px solid #DADADA;
     }
 }
 
@@ -123,7 +118,7 @@
         margin:0 0 12px;
         padding:0 7px 8px 7px;
         font-size:17px; line-height:17px;
-        color: lighten(@black, 30%);
+        color: @black;
         transition:0.6s color @easeOutExpo;
 
         &.active{
