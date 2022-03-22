@@ -31,7 +31,7 @@
 
 				<div id="nav-list">
 					{# <a class="nav-link nav-link-home" id="nav-link-home" href="{{site.url}}" rel="home">{{site.name}}</a> #}
-					{% include "@templates/common/menu.twig" with {'items': menu.get_items} %}
+				    {% include "@templates/common/menu.twig" with {'items': menu.get_items, 'children':false} %}
 				</div>
 
 				{# <div id="nav-lang"></div> #}
@@ -47,6 +47,6 @@
 	</div>
 
 	{% include '@templates/common/footer.twig' %}
-	
+
 </body>
 </html>
