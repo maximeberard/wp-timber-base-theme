@@ -1,4 +1,4 @@
-define(["exports", "abstract-page"], function (exports, _abstractPage) {
+define(["exports", "pages/default-page"], function (exports, _defaultPage) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -36,30 +36,30 @@ define(["exports", "abstract-page"], function (exports, _abstractPage) {
         if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     }
 
-    var Page = exports.Page = function (_AbstractPage) {
-        _inherits(Page, _AbstractPage);
+    var Page = exports.Page = function (_DefaultPage) {
+        _inherits(Page, _DefaultPage);
 
         function Page() {
             _classCallCheck(this, Page);
 
-            return _possibleConstructorReturn(this, _AbstractPage.apply(this, arguments));
+            return _possibleConstructorReturn(this, _DefaultPage.apply(this, arguments));
         }
 
-        // extends DefaultPage
+        // extends AbstractPage
 
         Page.prototype.init = function init() {
-            _AbstractPage.prototype.init.call(this);
+            _DefaultPage.prototype.init.call(this);
         };
 
         Page.prototype.initEvents = function initEvents() {
-            _AbstractPage.prototype.initEvents.call(this);
+            _DefaultPage.prototype.initEvents.call(this);
         };
 
         Page.prototype.destroyEvents = function destroyEvents() {
-            _AbstractPage.prototype.destroyEvents.call(this);
+            _DefaultPage.prototype.destroyEvents.call(this);
         };
 
         return Page;
-    }(_abstractPage.AbstractPage);
+    }(_defaultPage.DefaultPage);
 });
 //# sourceMappingURL=page.js.map

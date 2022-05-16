@@ -1,4 +1,4 @@
-define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debounce", "abstract-nav"], function (exports, _jquery, _utils, _bootstrapMedia, _debounce, _abstractNav) {
+define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "utils/bootstrapMedia"], function (exports, _jquery, _utils, _debounce, _abstractNav, _bootstrapMedia) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -66,6 +66,8 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
             _this.$btnBar = _this.$bar.find('.nav-btn-bar');
             // this.$barBg = $('#navbar-bg');
 
+            // this.$backTop = $('#back-top');
+
             _this.minifyLimit = _bootstrapMedia.BootstrapMedia.isMinMD() ? 165 : 50;
 
             _this.opened = false;
@@ -82,12 +84,14 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
             this.$btn.on('click', this.btnClick.bind(this));
             if (this.hasOverlay) this.$overlay.on('click', this.close.bind(this));
 
+            // this.$backTop.on('click', this.backTopOnClick.bind(this));
+
+            // window.addEventListener('keyup', this.onKeyUp.bind(this));
             window.addEventListener('scroll', this.onScroll.bind(this));
             window.addEventListener('resize', (0, _debounce.debounce)(this.onResize.bind(this), 100, false));
         };
 
         Nav.prototype.destroyEvents = function destroyEvents(router) {
-
             _AbstractNav.prototype.destroyEvents.call(this, router);
 
             if (router.options.ajaxEnabled) {
@@ -97,14 +101,12 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
             this.$btn.off('click', this.btnClick.bind(this));
             if (this.hasOverlay) this.$overlay.off('click', this.close.bind(this));
 
+            // this.$backTop.off('click', this.backTopOnClick.bind(this));
+
+            // window.removeEventListener('keyup', this.onKeyUp.bind(this));
             window.removeEventListener('scroll', this.onScroll.bind(this));
             window.removeEventListener('resize', (0, _debounce.debounce)(this.onResize.bind(this), 100, false));
         };
-
-        /**
-         * Scroll
-         */
-
 
         Nav.prototype.onScroll = function onScroll(e) {
 
@@ -116,21 +118,14 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
         };
 
         Nav.prototype.minify = function minify() {
-
             _utils.Utils.addClass(document.body, 'nav-minified');
             this.minified = true;
         };
 
         Nav.prototype.unminify = function unminify() {
-
             _utils.Utils.removeClass(document.body, 'nav-minified');
             this.minified = false;
         };
-
-        /**
-         * Btn click
-         */
-
 
         Nav.prototype.btnClick = function btnClick(e) {
             if (!_bootstrapMedia.BootstrapMedia.isMinSM()) {
@@ -138,8 +133,14 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
             }
         };
 
+        Nav.prototype.onKeyUp = function onKeyUp(e) {
+            if (e.keyCode == 27 && this.opened) this.close();
+        };
+
         Nav.prototype.open = function open() {
             if (!_bootstrapMedia.BootstrapMedia.isMinSM() && !this.opened) {
+
+                _utils.Utils.addClass(document.body, 'nav-opened');
 
                 this.$cont[0].style.display = 'block';
                 TweenLite.fromTo(this.$cont, 0.4, { xPercent: -100 }, { xPercent: 0 });
@@ -166,15 +167,19 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
 
             if (!_bootstrapMedia.BootstrapMedia.isMinSM() && this.opened) {
 
-                TweenLite.to(this.$cont, 0.4, { xPercent: -100, onComplete: function onComplete() {
+                TweenLite.to(this.$cont, 0.4, {
+                    xPercent: -100, onComplete: function onComplete() {
                         if (!_this2.opened) _this2.$cont[0].style.display = 'none';
                         // document.body.removeAttribute('style');
-                    } });
+                    }
+                });
 
                 if (this.hasOverlay) {
-                    TweenLite.to(this.$overlay, 1.2, { opacity: 0, onComplete: function onComplete() {
+                    TweenLite.to(this.$overlay, 1.2, {
+                        opacity: 0, onComplete: function onComplete() {
                             _this2.$overlay[0].style.display = 'none';
-                        } });
+                        }
+                    });
                 }
 
                 // Btn
@@ -185,8 +190,15 @@ define(["exports", "jquery", "utils/utils", "utils/bootstrapMedia", "utils/debou
                 TweenLite.to(this.$btnBar[2], 0.3, { y: 0, delay: 0.2 });
                 TweenLite.to(this.$btnBar[1], 0.3, { opacity: 1, delay: 0.2 });
 
+                _utils.Utils.removeClass(document.body, 'nav-opened');
+
                 this.opened = false;
             }
+        };
+
+        Nav.prototype.backTopOnClick = function backTopOnClick(e) {
+            TweenLite.to(window, 0.6, { scrollTo: { y: 0 } });
+            e.preventDefault();
         };
 
         Nav.prototype.onResize = function onResize() {};

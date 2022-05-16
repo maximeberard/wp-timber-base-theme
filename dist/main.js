@@ -1,4 +1,4 @@
-define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/polyfills", "utils/gaTrackErrors", "common/nav", "router", "graphicLoader", "common/loader", "class-factory"], function (_jquery, _TweenMax, _isMobile, _loglevel, _utils, _polyfills, _gaTrackErrors, _nav, _router, _graphicLoader, _loader, _classFactory) {
+define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/polyfills", "utils/gaTrackErrors", "common/nav", "router", "graphicLoader", "class-factory"], function (_jquery, _TweenMax, _isMobile, _loglevel, _utils, _polyfills, _gaTrackErrors, _nav, _router, _graphicLoader, _classFactory) {
   "use strict";
 
   var _jquery2 = _interopRequireDefault(_jquery);
@@ -15,39 +15,50 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
     };
   }
 
+  // import { BootstrapMedia } from "utils/bootstrapMedia";
+  // import { waypoint } from 'waypoint';
+  // import scrollTo from "scrollTo";
+  // import Masonry from "masonry";
+  // import Hammer from "Hammer";
+  // import actual from 'actual';
+
   /**
    * Set max log level (most verbose) 0 ---> 5
    * @see https://github.com/pimterry/loglevel
    */
-  if (temp.devMode && true === temp.devMode) {
-    _loglevel2.default.setLevel(0);
-  } else {
-    _loglevel2.default.setLevel(5);
-  }
+  // if (temp.devMode && true === temp.devMode) {
+  //     log.setLevel(0);
+  // } else {
+  //     log.setLevel(5);
+  // }
 
   /**
    * Set default Tween ease
    */
-  TweenLite.defaultEase = Expo.easeOut;
+  TweenLite.defaultEase = Quart.easeOut;
 
   /**
    * Log credits
    */
   // Utils.logCredits(
-  //     'BaseTheme',
-  //     '#fff',
+  //     'TimberBaseTheme',
+  //     '#fff', // bg-color
   //     [
-  //         { name:'DEVELOPER', website:'www.developer.com' }
+  //         { name: 'Made by : Maxime Bérard', website: 'www.maximeberard.com' }
   //     ],
   //     [
   //         { name: 'Starting Blocks', website: 'https://startingblocks.rezo-zero.com' },
+  //         { name: 'Timber', website: 'https://upstatement.com/timber' }
+
   //     ],
-  //     '#000'
+  //     '#000' // text-color
   // );
 
   /*
    * Declare polyfills
    */
+
+  // import { Loader } from "common/loader";
   (0, _polyfills.polyfills)();
 
   /**
@@ -80,11 +91,17 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
    */
   var router = new _router.Router({
     homeHasClass: false,
-    ajaxEnabled: false,
     lazyloadEnabled: true,
-    pageClass: 'page-container'
+    pageClass: 'page-container',
+    ajaxEnabled: false
+    // ajaxLinkTypeAttr: 'data-node-type-target',
+    // minLoadDuration: 1500,
+    // preLoadPageDelay: 0,
+    // prePushState: function (state) {
+    // this.page.prePushState(state);
+    // }
   }, new _classFactory.ClassFactory(),
-  // temp namespace is defined in your footer.php file
+  // temp namespace is defined in your footer.twig file
   temp.baseUrl, new _graphicLoader.GraphicLoader(), // Loader()
   new _nav.Nav());
   router.initEvents();
