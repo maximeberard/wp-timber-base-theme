@@ -12,18 +12,15 @@
         {% endif %} #}
     {% endif %}
 
-    {% set title = function('get_the_title') %}
-    {# function('wp_title') #}
+    { {% set title = function('get_the_title') %}
     {% set desc = site.description %}
-    {% if not title %}
+    {# {% if not title %}
         {% set title = site.title %}
-    {% endif %}
-    {% if not desc %}
-        {# {% set desc = 'Force description' %} #}
-    {% endif %}
+    {% endif %} #}
+    {# {% set desc = 'Force desc' %} #}
 
-    <title>{{ title }}{% if desc %} - {{ desc }}{% endif %}</title>
-	{# {{ site.name }} - {{ site.description }} #}
+    {# function('wp_title') #}
+    <title>{{ site.title }}{% if title %} - {{ title }}{% endif %}{% if desc %} - {{ desc }}{% endif %}</title>
 
 	<meta charset="{{ site.charset }}"/>
 	<meta name="description" content="{{ desc }}">
