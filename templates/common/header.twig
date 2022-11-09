@@ -12,7 +12,7 @@
         {% endif %} #}
     {% endif %}
 
-    { {% set title = function('get_the_title') %}
+    {% set title = function('get_the_title') %}
     {% set desc = site.description %}
     {# {% if not title %}
         {% set title = site.title %}
