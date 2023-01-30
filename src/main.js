@@ -62,23 +62,25 @@ gaTrackErrors();
 /*
  * Define vars
  */
-const $body = $('body');
-const dataHome = $body[0].getAttribute('data-is-home');
-const isHome = (dataHome == '1');
+const $body = $("body");
+const dataHome = $body[0].getAttribute("data-is-home");
+const isHome = dataHome == "1";
 
 /*
  * isMobile Test
  */
-let deviceMobile = (isMobile.any !== false);
-if (deviceMobile) Utils.addClass($body[0], 'is-mobile');
-else Utils.addClass($body[0], 'is-desktop');
+let deviceMobile = isMobile.any !== false;
+if (deviceMobile) Utils.addClass($body[0], "is-mobile");
+else Utils.addClass($body[0], "is-desktop");
 
 /*
  * IE Test
  */
-if (navigator.userAgent.indexOf('MSIE') >= 0 ||
-    navigator.userAgent.indexOf('Trident') >= 0) {
-    Utils.addClass($body[0], 'ie-browser');
+if (
+    navigator.userAgent.indexOf("MSIE") >= 0 ||
+    navigator.userAgent.indexOf("Trident") >= 0
+) {
+    Utils.addClass($body[0], "ie-browser");
 }
 
 /**
@@ -88,7 +90,7 @@ const router = new Router(
     {
         homeHasClass: false,
         lazyloadEnabled: true,
-        pageClass: 'page-container',
+        pageClass: "page-container",
         ajaxEnabled: false,
         // ajaxLinkTypeAttr: 'data-node-type-target',
         // minLoadDuration: 1500,
@@ -104,5 +106,4 @@ const router = new Router(
     new Nav()
 );
 router.initEvents();
-router.boot($('.page-container').eq(0), 'static', isHome);
-
+router.boot($(".page-container").eq(0), "static", isHome);
