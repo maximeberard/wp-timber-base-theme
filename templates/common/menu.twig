@@ -6,7 +6,6 @@
 				{% if item.children %}
 					{% include "@templates/common/menu.twig" with {'items': item.children, 'children':true} %}
 				{% endif %}
-
 			</li>
 		{% endfor %}
 	</ul>

@@ -6,7 +6,7 @@
 	<div class="page-content page-content-{{post.post_type}}" id="{{post.slug}}-content">
 		<div class="container">
 			<h1 class="page-title">{{post.title}}</h1>
-			<img src="{{ post.thumbnail.src|resize(1200, 300) }}">
+			<img class="img-responsive header-img" src="{{ post.thumbnail.src|resize(1200, 300) }}">
 			{{post.content}}
 			<div class="page-nav {{ post.post_type }}-nav">
 				{% if previousPost %}
