@@ -69,21 +69,21 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
   /*
    * Define vars
    */
-  var $body = (0, _jquery2.default)('body');
-  var dataHome = $body[0].getAttribute('data-is-home');
-  var isHome = dataHome == '1';
+  var $body = (0, _jquery2.default)("body");
+  var dataHome = $body[0].getAttribute("data-is-home");
+  var isHome = dataHome == "1";
 
   /*
    * isMobile Test
    */
   var deviceMobile = _isMobile2.default.any !== false;
-  if (deviceMobile) _utils.Utils.addClass($body[0], 'is-mobile');else _utils.Utils.addClass($body[0], 'is-desktop');
+  if (deviceMobile) _utils.Utils.addClass($body[0], "is-mobile");else _utils.Utils.addClass($body[0], "is-desktop");
 
   /*
    * IE Test
    */
-  if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident') >= 0) {
-    _utils.Utils.addClass($body[0], 'ie-browser');
+  if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("Trident") >= 0) {
+    _utils.Utils.addClass($body[0], "ie-browser");
   }
 
   /**
@@ -92,7 +92,7 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
   var router = new _router.Router({
     homeHasClass: false,
     lazyloadEnabled: true,
-    pageClass: 'page-container',
+    pageClass: "page-container",
     ajaxEnabled: false
     // ajaxLinkTypeAttr: 'data-node-type-target',
     // minLoadDuration: 1500,
@@ -105,6 +105,6 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
   temp.baseUrl, new _graphicLoader.GraphicLoader(), // Loader()
   new _nav.Nav());
   router.initEvents();
-  router.boot((0, _jquery2.default)('.page-container').eq(0), 'static', isHome);
+  router.boot((0, _jquery2.default)(".page-container").eq(0), "static", isHome);
 });
 //# sourceMappingURL=main.js.map
