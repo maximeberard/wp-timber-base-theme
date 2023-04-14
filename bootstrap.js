@@ -13,11 +13,11 @@ requirejs.config({
         Lazyload:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/vanilla-lazyload/dist/lazyload",
         waitForImages:
-            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/waitForImages/dist/jquery.waitforimages.min",
+            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/jquery.waitforimages/dist/jquery.waitforimages.min",
         scrollTo:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/gsap/src/minified/plugins/ScrollToPlugin.min",
         isMobile:
-            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/isMobile/isMobile.min",
+            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/ismobilejs/dist/isMobile.min",
         actual: "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/jquery.actual/jquery.actual.min",
         Hammer: "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/hammerjs/hammer.min",
         loglevel:
