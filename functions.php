@@ -9,20 +9,17 @@
  */
 
 
-/*
- Post types
- */
+/* Post types */
 
 // require_once(ABSPATH.'wp-content/themes/wp-timber-base-theme/types/type.php');
 
-/*
- Images sizes
- */
+
+/* Images sizes */
 
 add_theme_support('post-thumbnails');
 add_image_size('1200x630', 1200, 630, true);
 // square
-add_image_size('640x640', 640, 640, true); 
+add_image_size('640x640', 640, 640, true);
 add_image_size('360x360', 360, 360, true);
 // just width
 add_image_size('1920w', 1920, 999, false);
@@ -32,6 +29,22 @@ add_image_size('980w', 980, 999, false);
 add_image_size('640w', 640, 999, false);
 add_image_size('460w', 460, 999, false);
 add_image_size('360w', 360, 999, false);
+
+
+/* Footer widget */
+
+function register_custom_widget_area() {
+	register_sidebar(array(
+		'id' => 'footer-widget',
+		'name' => 'Footer widget',
+		'description' => 'Footer content',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<div class="widget-title-holder"><h3 class="widget-title">',
+		'after_title' => '</h3></div>'
+	));
+}
+add_action( 'widgets_init', 'register_custom_widget_area' );
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block
@@ -116,6 +129,8 @@ class StarterSite extends Timber\Site {
 		// $context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['menu']  = new Timber\Menu();
 		$context['site']  = $this;
+        // $context['home'] = Timber::get_post(2);
+        // $context['footer'] = Timber::get_widgets('footer-widget');
 		return $context;
 	}
 
