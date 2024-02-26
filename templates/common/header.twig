@@ -18,6 +18,9 @@
         {% set title = site.title %}
     {% endif %} #}
     {# {% set desc = 'Force desc' %} #}
+    {% if post and fn('get_post_meta',post.id, '_yoast_wpseo_metadesc', true) %}
+        {% set desc = fn('get_post_meta',post.id, '_yoast_wpseo_metadesc', true) %}
+    {% endif %}
 
     {# function('wp_title') #}
     <title>{{ site.title }}{% if title %} - {{ title }}{% endif %}{% if desc %} - {{ desc }}{% endif %}</title>
@@ -39,7 +42,7 @@
 	<!-- Facebook  -->
 	<meta property="og:title" content="TimberBaseTheme - SiteDescription"/>
 	<meta property="og:site_name" content="TimberBaseTheme"/>
-	<meta property="og:description" content="TimberBaseTheme - SiteDescription"/>
+	<meta property="og:description" content="{{ desc }}"/>
 	<meta property="og:url" content="http://www.url.com"/>
 	<meta property="og:image" content="{{ shareImage }}"/>
 	<meta
@@ -47,7 +50,7 @@
 	<!-- Twitter  -->
 	<meta name="twitter:card" content="summary"/>
 	<meta name="twitter:title" content="TimberBaseTheme - SiteDescription"/>
-	<meta name="twitter:description" content="TimberBaseTheme - SiteDescription"/>
+	<meta name="twitter:description" content="{{ desc }}"/>
 	{# <meta name="twitter:site" content="@twitteraccount"/> #}
 	<meta name="twitter:url" content="http://www.url.com"/>
 	<meta name="twitter:image" content="{{ shareImage }}"/>
