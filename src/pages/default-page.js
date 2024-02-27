@@ -17,7 +17,7 @@ import { BootstrapMedia } from "utils/bootstrapMedia";
 export class DefaultPage extends AbstractPage {
     init() {
         super.init();
-        if (this.context == "ajax") this.initAjax();
+        // if (this.context == "ajax") this.initAjax();
 
         this.$scrollToLink = this.$cont.find(".scroll-to-link");
     }
@@ -47,6 +47,18 @@ export class DefaultPage extends AbstractPage {
     }
 
     initAjax() {
+        super.initAjax();
+
+        // Matomo
+        if (typeof _paq !== "undefined") {
+            // console.log(window.location.pathname);
+            // console.log(document.title);
+            _paq.push(["setCustomUrl", window.location.pathname]);
+            _paq.push(["setDocumentTitle", document.title]);
+            _paq.push(["trackPageView"]);
+        }
+
+        // Analytics
         if (typeof gtag !== "undefined") {
             // console.log('🚩 Push Analytics for: ' + window.location.pathname);
             gtag("event", "page_view", {
