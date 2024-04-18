@@ -1,20 +1,40 @@
 
-<footer id="footer">
-{# Footer widget #}
-{% if footer %}{{ footer }}{% endif %}
-</footer>
-
-<div id="cookiesconsent"></div>
-
 {% set devMode = (site.url == 'http://localhost/wordpress') ? true : false %}
 {% set legalsId = 3 %}
+
+<div class="container">
+	<div class="row">
+		<div class="footer-col col-xs-12 col-sm-6">
+            {# &copy;{{'now' | date('Y') }} #}
+			{# Footer widget #}
+			{% if footer %}
+				{{ footer }}
+			{% endif %}
+            {# <a href="{{ fn('get_permalink', legalsId) }}">Mentions légales</a> #}
+
+		</div>
+		<div class="footer-col col-xs-12 col-sm-6">
+			<h3>Suivez-nous</h3>
+			<div class="footer-socials">
+				<a href="https://www.facebook.com" class="footer-social-link" target="_blank">
+					{% include '@templates/svg/use.svg.twig' with {
+                        'classes': ['social-icon'],
+                        'icon': 'icon-facebook'
+                    } only %}
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="cookiesconsent"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
 
 <script>
 	var temp = {
 		baseUrl: '{{ site.url }}',
-		devMode: '{{ devMode ? true : false }}'
+		devMode: {{ devMode ? 'true' : 'false' }}
 	};
 
 	// Cookie consent
@@ -30,7 +50,7 @@
 			message: "En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies à des fins de mesures d’audience.",
 			dismiss: "Fermer",
 			link: "En savoir plus",
-			href: "{{ function('get_permalink', legalsId) }}"
+			href: "{{ fn('get_permalink', legalsId) }}"
 		}
 		})
 	});
@@ -58,7 +78,7 @@
 <!-- JS scripts inclusions -->
 {% if devMode == false %}
 <!-- inject:js -->
-<script data-main="{{ site.theme.link }}/build/app-5e8daf88f1.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
+<script data-main="{{ site.theme.link }}/build/app-532fd8a80a.min.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
 <!-- endinject -->
 {% else %}
 <script data-main="{{ site.theme.link }}/bootstrap.js" src="{{ site.theme.link }}/node_modules/requirejs/require.js"></script>

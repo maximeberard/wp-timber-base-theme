@@ -129,6 +129,8 @@ class StarterSite extends Timber\Site {
 		// $context['notes'] = 'These values are available everytime you call Timber::context();';
 		$context['menu']  = new Timber\Menu();
 		$context['site']  = $this;
+        $lang = get_bloginfo("language");
+        $context['lang'] = $lang;
         // $context['home'] = Timber::get_post(2);
         // $context['footer'] = Timber::get_widgets('footer-widget');
 		return $context;

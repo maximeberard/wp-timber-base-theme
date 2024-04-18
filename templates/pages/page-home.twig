@@ -8,9 +8,9 @@
 			<h1 class="page-title">{{post.title}}</h1>
 			{{post.content}}
 
-			{# Sample posts loop 
+			{# Sample posts loop
 			{% for post in posts %}
-				<a class="col-xs-12 col-sm-4 post-link post-link-{{ loop.index0 }}" href="{{ function('get_permalink', post.ID) }}">
+				<a class="col-xs-12 col-sm-4 post-link post-link-{{ loop.index0 }}" href="{{ fn('get_permalink', post.ID) }}">
 					<figure class="post-image">
 						{% set thumbUrl = post.thumbnail.src('360x360') %}
 						<img class="post-img img-responsive" src="{{ thumbUrl }}" alt="{{ post.post_title }}" />

@@ -1,110 +1,126 @@
 /*------------------------------------*\
-   NAV
+    NAV
 \*------------------------------------*/
-
 
 @navbar-height: 50px;
 // @navbar-height-xs : 50px;
-@nav-height : 68px;
+@nav-height: 68px;
 
 // --- Navbar --- //
-#navbar{
+#navbar {
     position: fixed;
-    top:0; right:0; left:0;
-    height:@navbar-height;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: @navbar-height;
     background: @white;
-    z-index:55;
+    z-index: 55;
 }
 
-#nav-btn{
+#nav-btn {
     position: absolute;
-    top:15px; left:20px;
-    width:30px; height:22px;
+    top: 15px;
+    left: 20px;
+    width: 30px;
+    height: 22px;
     cursor: pointer;
-    z-index:57;
+    z-index: 57;
 }
 
-.nav-btn-bar{
+.nav-btn-bar {
     position: absolute;
-    width:30px; height:3px;
+    width: 30px;
+    height: 3px;
     background: @black;
 }
 
-#nav-btn-bar-1{
-    top:0;
+#nav-btn-bar-1 {
+    top: 0;
 }
 
-#nav-btn-bar-2{
-    top:9px;
+#nav-btn-bar-2 {
+    top: 9px;
 }
 
-#nav-btn-bar-3{
-    top:18px;
+#nav-btn-bar-3 {
+    top: 18px;
 }
 
-#navbar-label{
+#navbar-label {
     position: relative;
-    font-size:14px; line-height:@navbar-height;
-    padding-left:70px;
-    z-index:56;
+    font-size: 14px;
+    line-height: @navbar-height;
+    padding-left: 70px;
+    z-index: 56;
 }
 
-#nav-overlay{
+#nav-overlay {
     position: fixed;
-    top:0; right:0; bottom:0; left:0;
-    background: rgba(0,0,0,0.6);
-    z-index:35;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 35;
     display: none;
 }
 
 // --- Nav --- //
 
-#nav{
-    position:fixed;
+#nav {
+    position: fixed;
     display: none;
-    top:0; right:0; bottom:0; left:0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background: @white;
-    z-index:50;
+    z-index: 50;
 
     @media (min-width: @screen-sm-min) {
         display: block;
-        right:0; bottom:initial;
-        width:auto; height:@nav-height;
+        right: 0;
+        bottom: initial;
+        width: auto;
+        height: @nav-height;
     }
 }
 
-#nav-list{
+#nav-list {
     position: relative;
     float: left;
-    margin:0;
-    padding:80px 15px 10px;
-    width:100%;
+    margin: 0;
+    padding: 80px 15px 10px;
+    width: 100%;
 
-    ul{
-        margin: 0; padding: 0;
+    ul {
+        margin: 0;
+        padding: 0;
     }
 
     @media (min-width: @screen-sm-min) {
         float: left;
-        width:auto;
-        padding:0;
+        width: auto;
+        padding: 0;
     }
 }
 
-
-.menu-item{
+.menu-item {
     position: relative;
     display: block;
 
     @media (min-width: @screen-sm-min) {
-        display:inline-block; vertical-align: top;
+        display: inline-block;
+        vertical-align: top;
     }
 
-    &.current-menu-item a{
-        cursor:default;
+    &.current-menu-item a {
+        cursor: default;
     }
 
-    &.current-menu-item a, a:hover, a:focus{
+    &.current-menu-item a,
+    a:hover,
+    a:focus {
         color: @black;
 
         @media (min-width: @screen-sm-min) {
@@ -112,38 +128,42 @@
         }
     }
 
-    a{
+    a {
         position: relative;
         display: block;
-        margin:0 0 12px;
-        padding:0 7px 8px 7px;
-        font-size:17px; line-height:17px;
+        margin: 0 0 12px;
+        padding: 0 7px 8px 7px;
+        font-size: 17px;
+        line-height: 17px;
         color: @black;
-        transition:0.6s color @easeOutExpo;
+        transition: 0.6s color @easeOutExpo;
 
-        &.active{
+        &.active {
             cursor: default;
         }
 
-        &:hover, &.active{
+        &:hover,
+        &.active {
             color: @black;
         }
 
         @media (min-width: @screen-sm-min) {
-            display: inline-block; vertical-align: top;
+            display: inline-block;
+            vertical-align: top;
             padding: 26px 2px;
             margin: 0px 13px;
-            line-height:17px;
+            line-height: 17px;
         }
     }
 }
 
 // --- Lang --- //
 
-#nav-lang{
+#nav-lang {
     position: relative;
-    float:left;
-    margin:0; padding:0 15px;
+    float: left;
+    margin: 0;
+    padding: 0 15px;
 
     @media (min-width: @screen-sm-min) {
         float: right;
