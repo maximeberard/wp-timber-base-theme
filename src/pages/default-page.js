@@ -20,6 +20,8 @@ export class DefaultPage extends AbstractPage {
         // if (this.context == "ajax") this.initAjax();
 
         this.$scrollToLink = this.$cont.find(".scroll-to-link");
+
+        this.viewportSize = Utils.getViewportSize();
     }
 
     initEvents() {
@@ -41,7 +43,9 @@ export class DefaultPage extends AbstractPage {
                 ? this.router.nav.$cont[0].offsetHeight
                 : this.router.nav.$bar[0].offsetHeight;
             // console.log(yPos);
-            TweenLite.to(window, 0.6, { scrollTo: { y: Math.round(yPos) } });
+            TweenLite.to(window, 0.6, {
+                scrollTo: { y: Math.round(yPos), autokill: false },
+            });
         }
         e.preventDefault();
     }
@@ -66,5 +70,11 @@ export class DefaultPage extends AbstractPage {
                 page_location: window.location.pathname,
             });
         }
+    }
+
+    onResize(e) {
+        super.onResize(e);
+
+        this.viewportSize = Utils.getViewportSize();
     }
 }

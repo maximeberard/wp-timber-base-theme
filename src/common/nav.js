@@ -5,29 +5,29 @@
  * @copyright Maxime Bérard 2016
  * @author Maxime Bérard
  */
-import $ from 'jquery';
-// import scrollTo from "scrollTo";
+import $ from "jquery";
+import scrollTo from "scrollTo";
 import { Utils } from "utils/utils";
 import { debounce } from "utils/debounce";
-import { AbstractNav } from 'abstract-nav';
+import { AbstractNav } from "abstract-nav";
 import { BootstrapMedia } from "utils/bootstrapMedia";
 
 export class Nav extends AbstractNav {
     constructor() {
         super();
 
-        this.$cont = $('#nav');
-        this.$list = $('#nav-list');
-        this.$item = this.$list.find('.nav-item');
-        this.$link = this.$list.find('.nav-link');
-        this.$links = this.$cont.find('a').not('[target="_blank"]');
+        this.$cont = $("#nav");
+        this.$list = $("#nav-list");
+        this.$item = this.$list.find(".nav-item");
+        this.$link = this.$list.find(".nav-link");
+        this.$links = this.$cont.find("a").not('[target="_blank"]');
 
-        this.$btn = $('#nav-btn');
+        this.$btn = $("#nav-btn");
         this.hasOverlay = false;
-        if (this.hasOverlay) this.$overlay = $('#nav-overlay');
+        if (this.hasOverlay) this.$overlay = $("#nav-overlay");
 
-        this.$bar = $('#navbar');
-        this.$btnBar = this.$bar.find('.nav-btn-bar');
+        this.$bar = $("#navbar");
+        this.$btnBar = this.$bar.find(".nav-btn-bar");
         // this.$barBg = $('#navbar-bg');
 
         // this.$backTop = $('#back-top');
@@ -41,53 +41,57 @@ export class Nav extends AbstractNav {
         super.initEvents(router);
 
         if (router.options.ajaxEnabled) {
-            this.$links.on('click', router.onLinkClick.bind(router));
+            this.$links.on("click", router.onLinkClick.bind(router));
         }
 
-        this.$btn.on('click', this.btnClick.bind(this));
-        if (this.hasOverlay) this.$overlay.on('click', this.close.bind(this));
+        this.$btn.on("click", this.btnClick.bind(this));
+        if (this.hasOverlay) this.$overlay.on("click", this.close.bind(this));
 
         // this.$backTop.on('click', this.backTopOnClick.bind(this));
 
         // window.addEventListener('keyup', this.onKeyUp.bind(this));
-        window.addEventListener('scroll', this.onScroll.bind(this));
-        window.addEventListener('resize', debounce(this.onResize.bind(this), 100, false));
+        window.addEventListener("scroll", this.onScroll.bind(this));
+        window.addEventListener(
+            "resize",
+            debounce(this.onResize.bind(this), 100, false)
+        );
     }
 
     destroyEvents(router) {
         super.destroyEvents(router);
 
         if (router.options.ajaxEnabled) {
-            this.$links.off('click', router.onLinkClick.bind(router));
+            this.$links.off("click", router.onLinkClick.bind(router));
         }
 
-        this.$btn.off('click', this.btnClick.bind(this));
-        if (this.hasOverlay) this.$overlay.off('click', this.close.bind(this));
+        this.$btn.off("click", this.btnClick.bind(this));
+        if (this.hasOverlay) this.$overlay.off("click", this.close.bind(this));
 
         // this.$backTop.off('click', this.backTopOnClick.bind(this));
 
         // window.removeEventListener('keyup', this.onKeyUp.bind(this));
-        window.removeEventListener('scroll', this.onScroll.bind(this));
-        window.removeEventListener('resize', debounce(this.onResize.bind(this), 100, false));
+        window.removeEventListener("scroll", this.onScroll.bind(this));
+        window.removeEventListener(
+            "resize",
+            debounce(this.onResize.bind(this), 100, false)
+        );
     }
 
     onScroll(e) {
-
         if (window.scrollY > this.minifyLimit) {
             if (!this.minified) this.minify();
-        }
-        else {
+        } else {
             if (this.minified) this.unminify();
         }
     }
 
     minify() {
-        Utils.addClass(document.body, 'nav-minified');
+        Utils.addClass(document.body, "nav-minified");
         this.minified = true;
     }
 
     unminify() {
-        Utils.removeClass(document.body, 'nav-minified');
+        Utils.removeClass(document.body, "nav-minified");
         this.minified = false;
     }
 
@@ -104,14 +108,18 @@ export class Nav extends AbstractNav {
 
     open() {
         if (!BootstrapMedia.isMinSM() && !this.opened) {
+            Utils.addClass(document.body, "nav-opened");
 
-            Utils.addClass(document.body, 'nav-opened');
-
-            this.$cont[0].style.display = 'block';
-            TweenLite.fromTo(this.$cont, 0.4, { xPercent: -100 }, { xPercent: 0 });
+            this.$cont[0].style.display = "block";
+            TweenLite.fromTo(
+                this.$cont,
+                0.4,
+                { xPercent: -100 },
+                { xPercent: 0 }
+            );
 
             if (this.hasOverlay) {
-                this.$overlay[0].style.display = 'block';
+                this.$overlay[0].style.display = "block";
                 TweenLite.to(this.$overlay, 1.2, { opacity: 1 });
             }
 
@@ -129,19 +137,20 @@ export class Nav extends AbstractNav {
 
     close() {
         if (!BootstrapMedia.isMinSM() && this.opened) {
-
             TweenLite.to(this.$cont, 0.4, {
-                xPercent: -100, onComplete: () => {
-                    if (!this.opened) this.$cont[0].style.display = 'none';
+                xPercent: -100,
+                onComplete: () => {
+                    if (!this.opened) this.$cont[0].style.display = "none";
                     // document.body.removeAttribute('style');
-                }
+                },
             });
 
             if (this.hasOverlay) {
                 TweenLite.to(this.$overlay, 1.2, {
-                    opacity: 0, onComplete: () => {
-                        this.$overlay[0].style.display = 'none';
-                    }
+                    opacity: 0,
+                    onComplete: () => {
+                        this.$overlay[0].style.display = "none";
+                    },
                 });
             }
 
@@ -153,18 +162,16 @@ export class Nav extends AbstractNav {
             TweenLite.to(this.$btnBar[2], 0.3, { y: 0, delay: 0.2 });
             TweenLite.to(this.$btnBar[1], 0.3, { opacity: 1, delay: 0.2 });
 
-            Utils.removeClass(document.body, 'nav-opened');
+            Utils.removeClass(document.body, "nav-opened");
 
             this.opened = false;
         }
     }
 
     backTopOnClick(e) {
-        TweenLite.to(window, 0.6, { scrollTo: { y: 0 } });
+        TweenLite.to(window, 0.6, { scrollTo: { y: 0, autokill: false } });
         e.preventDefault();
     }
 
-    onResize() {
-
-    }
+    onResize() {}
 }
