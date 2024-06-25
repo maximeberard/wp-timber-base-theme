@@ -3,10 +3,12 @@
 	<head>
 
     {% set shareImage = site.theme.link ~ '/img/share-image.jpg'  %}
+    {% set shareUrl = site.home_url %}
     {% if post %}
         {% if post.thumbnail %}
             {% set shareImage = post.thumbnail.src('1200x630')  %}
         {% endif %}
+        {% set shareUrl = fn('get_permalink',post.id) %}
         {# {% if post.meta('share_image') %}
             {% set shareImage = post.meta('share_image')  %}
         {% endif %} #}
@@ -25,11 +27,10 @@
     {# function('wp_title') #}
     <title>{{ site.title }}{% if title %} - {{ title }}{% endif %}{% if desc %} - {{ desc }}{% endif %}</title>
 
-	<meta charset="{{ site.charset }}"/>
+	<meta charset="{{ site.charset }}">
 	<meta name="description" content="{{ desc }}">
-	<link rel="stylesheet" href="{{ site.theme.link }}/style.css" type="text/css" media="screen"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="author" href="{{ site.theme.link }}/humans.txt"/>
+	<link rel="author" href="{{ site.theme.link }}/humans.txt">
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -40,20 +41,19 @@
 	<meta name="theme-color" content="#ffffff">
 
 	<!-- Facebook  -->
-	<meta property="og:title" content="TimberBaseTheme - SiteDescription"/>
-	<meta property="og:site_name" content="TimberBaseTheme"/>
-	<meta property="og:description" content="{{ desc }}"/>
-	<meta property="og:url" content="http://www.url.com"/>
-	<meta property="og:image" content="{{ shareImage }}"/>
-	<meta
-	property="og:type" content="website"/>
+	<meta property="og:title" content="TimberBaseTheme - SiteDescription">
+	<meta property="og:site_name" content="TimberBaseTheme">
+	<meta property="og:description" content="{{ desc }}">
+	<meta property="og:url" content="{{ shareUrl }}">
+	<meta property="og:image" content="{{ shareImage }}">
+	<meta property="og:type" content="website">
 	<!-- Twitter  -->
-	<meta name="twitter:card" content="summary"/>
-	<meta name="twitter:title" content="TimberBaseTheme - SiteDescription"/>
-	<meta name="twitter:description" content="{{ desc }}"/>
-	{# <meta name="twitter:site" content="@twitteraccount"/> #}
-	<meta name="twitter:url" content="http://www.url.com"/>
-	<meta name="twitter:image" content="{{ shareImage }}"/>
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="TimberBaseTheme - SiteDescription">
+	<meta name="twitter:description" content="{{ desc }}">
+	{# <meta name="twitter:site" content="@twitteraccount"> #}
+	<meta name="twitter:url" content="{{ shareUrl }}">
+	<meta name="twitter:image" content="{{ shareImage }}">
 
 	{# {{function('wp_head')}} #}
 
