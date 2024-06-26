@@ -6,13 +6,13 @@
  * @author Maxime Bérard
  */
 
-// import {AbstractPage} from "abstract-page";
 import { DefaultPage } from "pages/default-page";
 
-export class Home extends DefaultPage { // extends AbstractPage
-
+export class Home extends DefaultPage {
     init() {
         super.init();
+
+        // console.log("HOME");
     }
 
     initEvents() {

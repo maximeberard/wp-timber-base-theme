@@ -1,4 +1,4 @@
-define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scroll", "utils/bootstrapMedia"], function (exports, _jquery, _TweenMax, _scrollTo, _utils, _scroll, _bootstrapMedia) {
+define(["exports", "jquery", "utils/utils", "utils/scroll", "utils/bootstrapMedia"], function (exports, _jquery, _utils, _scroll, _bootstrapMedia) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -7,8 +7,6 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
     exports.Loader = undefined;
 
     var _jquery2 = _interopRequireDefault(_jquery);
-
-    var _scrollTo2 = _interopRequireDefault(_scrollTo);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -28,20 +26,20 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
 
             // console.log('🌀 LOADER INIT');
 
-            this.$cont = (0, _jquery2.default)('#loading');
+            this.$cont = (0, _jquery2.default)("#loading");
             // this.$bg = $('#loading-bg');
-            this.$inner = (0, _jquery2.default)('#loading-inner');
+            this.$inner = (0, _jquery2.default)("#loading-inner");
 
             // Scroll.disable(); // enable();
             // console.log('SCROLL DISABLE');
             // $(window).scrollTop(0);
-            // TweenLite.to(window, 0.6, {scrollTo:{y:0, autokill:false}});
+            // gsap.to(window, { duration:0.6, scrollTo:{y:0}});
 
-            this.context = 'static';
+            this.context = "static";
 
-            this.$body = (0, _jquery2.default)('body');
+            this.$body = (0, _jquery2.default)("body");
 
-            this.isHome = this.$body[0].className.indexOf('home') >= 0;
+            this.isHome = this.$body[0].className.indexOf("home") >= 0;
 
             this.active = true;
 
@@ -51,14 +49,14 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
         Loader.prototype.showStatic = function showStatic() {
             // console.log('🌀 LOADER SHOW STATIC');
             // Utils.addClass(this.$cont[0],'active');
-            TweenLite.to(window, 0.6, { scrollTo: { y: 0, autokill: false } });
+            gsap.to(window, { duration: 0.6, scrollTo: { y: 0 } });
 
             // if (this.isHome) this.initHome();
             // else
-            // TweenLite.fromTo(this.$cont, 0.6, {opacity:0}, {opacity:1});
+            // gsap.fromTo(this.$cont, {duration: 0.6, opacity:0}, {opacity:1});
 
-            _utils.Utils.addClass(this.$body[0], 'loading-active');
-            _utils.Utils.addClass(this.$body[0], 'static');
+            _utils.Utils.addClass(this.$body[0], "loading-active");
+            _utils.Utils.addClass(this.$body[0], "static");
         };
 
         // initHome () {
@@ -67,7 +65,7 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
         //     let $homeLink = this.$home.find('a');
         //     $homeLink.addClass('no-ajax-link');
 
-        //     TweenLite.to(this.$homeText, 1, {opacity:1, onComplete: ()=> {
+        //     //     gsap.to(this.$homeText, {duration:1, opacity:1, onComplete: ()=> {
         //         $homeLink.addClass('active');
         //     }});
         // }
@@ -81,16 +79,20 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
                 _this.active = true;
 
                 // Scroll.disable();
-                TweenLite.to(window, 0.6, { scrollTo: { y: 0 }, delay: 0.4, autokill: false });
+                gsap.to(window, {
+                    duration: 0.6,
+                    scrollTo: { y: 0 },
+                    delay: 0.4
+                });
 
                 setTimeout(function () {
-                    _utils.Utils.addClass(_this.$body[0], 'loading-active');
+                    _utils.Utils.addClass(_this.$body[0], "loading-active");
                 }, 1000);
 
                 // if (document.body.className.indexOf('nav-opened') >= 0)
                 // let viewportSize = Utils.getViewportSize();
                 // this.$cont[0].style.display = 'block';
-                // TweenLite.fromTo(this.$cont, 0.6, {y:viewportSize.height}, {y:0});
+                // gsap.fromTo(this.$cont, { duration:0.6, y:viewportSize.height}, {y:0});
             }, 50);
         };
 
@@ -103,22 +105,26 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
             // if (this.context == 'static' && this.isHome) hideDelay = 1600;
 
             (0, _jquery2.default)(window).scrollTop(0);
-            TweenLite.to(window, 0.6, { scrollTo: { y: 0, autokill: false } });
-            _utils.Utils.removeClass(this.$body[0], 'loading-active');
+            gsap.to(window, { duration: 0.6, scrollTo: { y: 0 } });
+            _utils.Utils.removeClass(this.$body[0], "loading-active");
 
             // console.log('🌀 LOADER HIDE ANIM');
             var viewportSize = _utils.Utils.getViewportSize();
 
-            // if(window.location.hash == '') TweenLite.to(window, 0.6, {scrollTo:{y:0}});
+            // if(window.location.hash == '') gsap.to(window, { duration:0.6,scrollTo:{y:0}});
 
-            // TweenLite.to(this.$cont, 0.6, {y:-viewportSize.height, onComplete: () => {
+            // gsap.to(this.$cont,{ duration:0.6, y:-viewportSize.height, onComplete: () => {
             //     this.onHidden();
             // }});
 
-            if (this.context == 'static') {
-                TweenLite.to(this.$cont, 1, { opacity: 0, onComplete: function onComplete() {
+            if (this.context == "static") {
+                gsap.to(this.$cont, {
+                    duration: 1,
+                    opacity: 0,
+                    onComplete: function onComplete() {
                         _this2.onHidden();
-                    } });
+                    }
+                });
             } else this.onHidden();
         };
 
@@ -126,17 +132,16 @@ define(["exports", "jquery", "TweenMax", "scrollTo", "utils/utils", "utils/scrol
             // console.log('🌀 LOADER ON HIDDEN');
             this.active = false;
 
-            this.$cont[0].style.display = 'none';
+            this.$cont[0].style.display = "none";
             // console.log('SCROLL ENABLE');
             // $(window).scrollTop(0);
             // Scroll.enable();
 
-
-            if (this.context == 'static') {
-                this.context = 'ajax';
-                _utils.Utils.removeClass(this.$body[0], 'static');
-                _utils.Utils.addClass(this.$body[0], 'ajax');
-                _utils.Utils.addClass(this.$cont[0], 'loading-ajax');
+            if (this.context == "static") {
+                this.context = "ajax";
+                _utils.Utils.removeClass(this.$body[0], "static");
+                _utils.Utils.addClass(this.$body[0], "ajax");
+                _utils.Utils.addClass(this.$cont[0], "loading-ajax");
                 // if (this.isHome) this.isHome = false;
             }
         };

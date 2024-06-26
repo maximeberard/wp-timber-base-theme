@@ -23,11 +23,12 @@
  * @author Ambroise Maupate
  */
 import log from "loglevel";
-import TweenMax from "TweenMax";
+// import TweenMax from "TweenMax";
+import gsap from "gsap";
 import waitForImages from "waitForImages";
 import $ from "jquery";
-import Lazyload from 'Lazyload';
-import {debounce} from "utils/debounce";
+import Lazyload from "Lazyload";
+import { debounce } from "utils/debounce";
 
 /**
  * Base class for creating page implementations.
@@ -47,7 +48,7 @@ export class AbstractPage {
      * @param  {Boolean} isHome
      */
     constructor(router, $cont, context, type, isHome) {
-        type = type || 'page';
+        type = type || "page";
 
         if (!$cont) {
             throw "AbstractPage need a $cont (JQuery) to be defined.";
@@ -86,17 +87,19 @@ export class AbstractPage {
          */
         this.lazyload = null;
 
-        if(this.$cont[0].getAttribute('data-is-home') == '1'){
+        if (this.$cont[0].getAttribute("data-is-home") == "1") {
             this.isHome = true;
         }
 
         this.ready = false;
 
-        this.name = (this.$cont.length) ? this.$cont[0].getAttribute('data-node-name') : '';
+        this.name = this.$cont.length
+            ? this.$cont[0].getAttribute("data-node-name")
+            : "";
 
         this.onResizeDebounce = debounce(this.onResize.bind(this), 50, false);
 
-        log.debug('✳️ #' + this.id + '\t' + type);
+        log.debug("✳️ #" + this.id + "\t" + type);
 
         this.init();
         this.initEvents();
@@ -109,13 +112,13 @@ export class AbstractPage {
      * of extending page constructor.
      */
     init() {
-        this.$link = this.$cont.find('a').not('[target="_blank"]');
+        this.$link = this.$cont.find("a").not('[target="_blank"]');
         this.bindedLinkClick = this.router.onLinkClick.bind(this.router);
 
         // Add target blank on external link
-        if(this.$link.length){
+        if (this.$link.length) {
             this.externalLinkTarget(this.$link, this.router.baseUrl);
-            this.$link = this.$cont.find('a').not('[target="_blank"]');
+            this.$link = this.$cont.find("a").not('[target="_blank"]');
         }
 
         // --- Lazyload --- //
@@ -123,12 +126,18 @@ export class AbstractPage {
             setTimeout(() => {
                 this.beforeLazyload();
                 this.lazyload = new Lazyload({
-                    elements_selector: '.'+this.router.options.lazyloadClass,
-                    data_src: this.router.options.lazyloadSrcAttr.replace('data-', ''),
-                    data_srcset: this.router.options.lazyloadSrcSetAttr.replace('data-', ''),
+                    elements_selector: "." + this.router.options.lazyloadClass,
+                    data_src: this.router.options.lazyloadSrcAttr.replace(
+                        "data-",
+                        ""
+                    ),
+                    data_srcset: this.router.options.lazyloadSrcSetAttr.replace(
+                        "data-",
+                        ""
+                    ),
                     callback_set: this.onLazyImageSet.bind(this),
                     callback_load: this.onLazyImageLoad.bind(this),
-                    callback_processed: this.onLazyImageProcessed.bind(this)
+                    callback_processed: this.onLazyImageProcessed.bind(this),
                 });
             }, 0);
         }
@@ -137,13 +146,13 @@ export class AbstractPage {
         this.blocks = [];
         this.$blocks = this.$cont.find(this.router.options.pageBlockClass);
         this.blockLength = this.$blocks.length;
-        if(this.blockLength) {
+        if (this.blockLength) {
             this.initBlocks();
         }
 
         // --- Context --- //
         if (this.router.options.ajaxEnabled) {
-            if(this.context == 'ajax'){
+            if (this.context == "ajax") {
                 this.initAjax();
             } else {
                 this.router.pushFirstState(this.isHome, this.type, this.name);
@@ -155,7 +164,7 @@ export class AbstractPage {
      * Destroy current page and all its blocks.
      */
     destroy() {
-        log.debug('🗑 #' + this.id);
+        log.debug("🗑 #" + this.id);
         this.$cont.remove();
         this.destroyEvents();
         // --- Blocks --- //
@@ -178,28 +187,28 @@ export class AbstractPage {
      * Such as waitForImages and link click if you enabled Ajax navigation.
      */
     initEvents() {
-        if (this.$cont.find('img').length) {
+        if (this.$cont.find("img").length) {
             this.$cont.waitForImages({
                 finished: this.onLoad.bind(this),
-                waitForAll: true
+                waitForAll: true,
             });
         } else {
             this.onLoad();
         }
 
-        if(this.$link.length && this.router.options.ajaxEnabled) {
-            this.$link.on('click', this.bindedLinkClick);
+        if (this.$link.length && this.router.options.ajaxEnabled) {
+            this.$link.on("click", this.bindedLinkClick);
         }
 
-        this.router.$window.on('resize', this.onResizeDebounce);
+        this.router.$window.on("resize", this.onResizeDebounce);
     }
 
     /**
      *
      */
     destroyEvents() {
-        this.$link.off('click', this.bindedLinkClick);
-        this.router.$window.off('resize', this.onResizeDebounce);
+        this.$link.off("click", this.bindedLinkClick);
+        this.router.$window.off("resize", this.onResizeDebounce);
     }
 
     /**
@@ -211,7 +220,10 @@ export class AbstractPage {
         this.loadDuration = this.loadDate - this.router.loadBeginDate;
         this.router.nav.update(this);
 
-        const delay = (this.loadDuration > this.router.options.minLoadDuration) ? 0 : this.router.options.minLoadDuration - this.loadDuration;
+        const delay =
+            this.loadDuration > this.router.options.minLoadDuration
+                ? 0
+                : this.router.options.minLoadDuration - this.loadDuration;
 
         // Hide loading
         setTimeout(() => {
@@ -220,15 +232,19 @@ export class AbstractPage {
             this.ready = true;
             this.router.loader.hide();
 
-            if(this.context == 'static'){
+            if (this.context == "static") {
                 this.show(onShowEnded);
-            } else if(this.context == 'ajax'){
+            } else if (this.context == "ajax") {
                 // Update body id
-                if(this.name !== '') document.body.id = this.name;
+                if (this.name !== "") document.body.id = this.name;
                 // Hide formerPages - show
                 if (this.router.formerPages.length > 0) {
-                    const formerPage = this.router.formerPages[(this.router.formerPages.length - 1)];
-                    const formerPageDestroy = formerPage.destroy.bind(formerPage);
+                    const formerPage =
+                        this.router.formerPages[
+                            this.router.formerPages.length - 1
+                        ];
+                    const formerPageDestroy =
+                        formerPage.destroy.bind(formerPage);
 
                     /*
                      * Very important,
@@ -252,12 +268,16 @@ export class AbstractPage {
      * @param {Function} onShow
      */
     show(onShow) {
-        log.debug('▶️ #' + this.id);
+        log.debug("▶️ #" + this.id);
 
         // Animate
-        TweenLite.to(this.$cont, 0.6, {opacity:1, onComplete: () => {
-            if (typeof onShow !== 'undefined') onShow();
-        }});
+        gsap.to(this.$cont, {
+            opacity: 1,
+            duration: 0.6,
+            onComplete: () => {
+                if (typeof onShow !== "undefined") onShow();
+            },
+        });
     }
 
     /**
@@ -265,34 +285,46 @@ export class AbstractPage {
      */
     showEnded() {
         this.router.transition = false;
-        this.$cont.removeClass(this.router.options.pageClass + '-ajax');
-        this.$cont.removeClass(this.router.options.pageClass + '-transitioning');
+        this.$cont.removeClass(this.router.options.pageClass + "-ajax");
+        this.$cont.removeClass(
+            this.router.options.pageClass + "-transitioning"
+        );
     }
 
     /**
      * @param {Function} onHidden
      */
     hide(onHidden) {
-        log.debug('◀️ #' + this.id);
+        log.debug("◀️ #" + this.id);
 
-        TweenLite.to(this.$cont, 0.6, {opacity:0, onComplete: () => {
-            if (typeof onHidden !== 'undefined') onHidden();
-        }});
+        gsap.to(this.$cont, {
+            opacity: 0,
+            duration: 0.6,
+            onComplete: () => {
+                if (typeof onHidden !== "undefined") onHidden();
+            },
+        });
     }
 
     initAjax() {
-        this.$cont.addClass(this.router.options.pageClass + '-transitioning');
+        this.$cont.addClass(this.router.options.pageClass + "-transitioning");
     }
 
     /**
      * @private
      */
     initBlocks() {
-        for(let blockIndex = 0; blockIndex < this.blockLength; blockIndex++) {
-            let type = this.$blocks[blockIndex].getAttribute(this.router.options.objectTypeAttr),
+        for (let blockIndex = 0; blockIndex < this.blockLength; blockIndex++) {
+            let type = this.$blocks[blockIndex].getAttribute(
+                    this.router.options.objectTypeAttr
+                ),
                 id = this.$blocks[blockIndex].id;
 
-            let block = this.router.classFactory.getBlockInstance(type, this, this.$blocks.eq(blockIndex));
+            let block = this.router.classFactory.getBlockInstance(
+                type,
+                this,
+                this.$blocks.eq(blockIndex)
+            );
             /*
              * Prevent undefined blocks to be appended to block collection.
              */
@@ -304,7 +336,8 @@ export class AbstractPage {
          * Notify all blocks that page init is over.
          */
         for (let i = this.blocks.length - 1; i >= 0; i--) {
-            if(typeof this.blocks[i].onPageReady == 'function') this.blocks[i].onPageReady();
+            if (typeof this.blocks[i].onPageReady == "function")
+                this.blocks[i].onPageReady();
         }
     }
 
@@ -316,15 +349,17 @@ export class AbstractPage {
      */
     getBlockById(id) {
         for (let i in this.blocks) {
-            if (this.blocks[i] &&
+            if (
+                this.blocks[i] &&
                 this.blocks[i].id &&
-                this.blocks[i].id == id) {
+                this.blocks[i].id == id
+            ) {
                 return this.blocks[i];
             }
         }
         return null;
     }
-    
+
     /**
      * Get a page block index from its `id`.
      *
@@ -333,26 +368,30 @@ export class AbstractPage {
      */
     getBlockIndexById(id) {
         for (let i in this.blocks) {
-            if (this.blocks[i] &&
+            if (
+                this.blocks[i] &&
                 this.blocks[i].id &&
-                this.blocks[i].id == id) {
+                this.blocks[i].id == id
+            ) {
                 return i;
             }
         }
         return null;
     }
-    
+
     /**
      * Get the first page block instance from its `type`.
      *
      * @param  {String} type
      * @return {AbstractBlock|null}
      */
-    getFirstBlockByType(type){
+    getFirstBlockByType(type) {
         for (let i in this.blocks) {
-            if (this.blocks[i] &&
+            if (
+                this.blocks[i] &&
                 this.blocks[i].type &&
-                this.blocks[i].type == type) {
+                this.blocks[i].type == type
+            ) {
                 return this.blocks[i];
             }
         }
@@ -365,11 +404,13 @@ export class AbstractPage {
      * @param  {String} type
      * @return {AbstractBlock|null}
      */
-    getFirstBlockIndexByType(type){
+    getFirstBlockIndexByType(type) {
         for (let i in this.blocks) {
-            if (this.blocks[i] &&
+            if (
+                this.blocks[i] &&
                 this.blocks[i].type &&
-                this.blocks[i].type == type) {
+                this.blocks[i].type == type
+            ) {
                 return i;
             }
         }
@@ -379,18 +420,14 @@ export class AbstractPage {
     /**
      * @abstract
      */
-    onResize(){
-
-    }
+    onResize() {}
 
     /**
      * Called before init lazyload images.
      *
      * @abstract
      */
-    beforeLazyload() {
-
-    }
+    beforeLazyload() {}
 
     /**
      * After image src switched.
@@ -399,7 +436,7 @@ export class AbstractPage {
      * @param {HTMLImage} element
      */
     onLazyImageSet(element) {
-        log.debug('\t🖼 «'+element.id+'» set');
+        log.debug("\t🖼 «" + element.id + "» set");
     }
 
     /**
@@ -409,7 +446,7 @@ export class AbstractPage {
      * @param {HTMLImage} element
      */
     onLazyImageLoad(element) {
-        log.debug('\t🖼 «'+element.id+'» load');
+        log.debug("\t🖼 «" + element.id + "» load");
     }
 
     /**
@@ -418,7 +455,7 @@ export class AbstractPage {
      * @abstract
      */
     onLazyImageProcessed(index) {
-        log.debug('\t🖼 Lazy load processed');
+        log.debug("\t🖼 Lazy load processed");
     }
 
     /**
@@ -429,24 +466,25 @@ export class AbstractPage {
      */
     externalLinkTarget($links, baseUrl) {
         const linksLength = $links.length;
-        let abstractBaseUrl = baseUrl.split('://');
+        let abstractBaseUrl = baseUrl.split("://");
 
         abstractBaseUrl = abstractBaseUrl[1];
 
-        for(let linkIndex = 0; linkIndex < linksLength; linkIndex++){
+        for (let linkIndex = 0; linkIndex < linksLength; linkIndex++) {
             const link = $links[linkIndex];
             /*
              * Use RAW href data not to automatically
              * get protocol and domain in string
              */
-            const linkString = link.getAttribute('href');
-            if(linkString.indexOf(abstractBaseUrl) == -1 &&
-               linkString.indexOf('javascript') == -1 &&
-               linkString.indexOf('mailto:') == -1 &&
-               linkString.charAt(0) != '/' &&
-               linkString.charAt(0) != '#')
-            {
-                $links[linkIndex].target = '_blank';
+            const linkString = link.getAttribute("href");
+            if (
+                linkString.indexOf(abstractBaseUrl) == -1 &&
+                linkString.indexOf("javascript") == -1 &&
+                linkString.indexOf("mailto:") == -1 &&
+                linkString.charAt(0) != "/" &&
+                linkString.charAt(0) != "#"
+            ) {
+                $links[linkIndex].target = "_blank";
             }
         }
     }

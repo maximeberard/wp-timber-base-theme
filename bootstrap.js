@@ -9,13 +9,18 @@ requirejs.config({
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min",
         TweenMax: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min",
         TweenLite: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min",
+        gsap: "//cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min",
         // Internal dep
         Lazyload:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/vanilla-lazyload/dist/lazyload",
         waitForImages:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/jquery.waitforimages/dist/jquery.waitforimages.min",
-        scrollTo:
-            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/gsap/src/minified/plugins/ScrollToPlugin.min",
+        ScrollTrigger:
+            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/gsap/dist/ScrollTrigger.min",
+        ScrollToPlugin:
+            "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/gsap/dist/ScrollToPlugin.min",
+        // scrollTo:
+        //     "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/gsap/src/minified/plugins/ScrollToPlugin.min",
         isMobile:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/ismobilejs/dist/isMobile.min",
         actual: "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/jquery.actual/jquery.actual.min",

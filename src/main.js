@@ -1,5 +1,8 @@
 import $ from "jquery";
-import TweenMax from "TweenMax";
+// import TweenMax from "TweenMax";
+import gsap from "gsap";
+import ScrollToPlugin from "ScrollToPlugin";
+// import ScrollTrigger from "ScrollTrigger";
 import isMobile from "isMobile";
 import log from "loglevel";
 import { Utils } from "utils/utils";
@@ -27,10 +30,13 @@ import { ClassFactory } from "class-factory";
 //     log.setLevel(5);
 // }
 
+console.log("OK");
+
 /**
- * Set default Tween ease
+ * gsap - set default ease
  */
-TweenLite.defaultEase = Quart.easeOut;
+gsap.defaultEase = Power2.out; // Quad.easeInOut;
+gsap.registerPlugin(ScrollToPlugin); // ScrollTrigger
 
 /**
  * Log credits

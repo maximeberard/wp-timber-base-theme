@@ -52,18 +52,18 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
 
             var _this = _possibleConstructorReturn(this, _AbstractNav.call(this));
 
-            _this.$cont = (0, _jquery2.default)('#nav');
-            _this.$list = (0, _jquery2.default)('#nav-list');
-            _this.$item = _this.$list.find('.nav-item');
-            _this.$link = _this.$list.find('.nav-link');
-            _this.$links = _this.$cont.find('a').not('[target="_blank"]');
+            _this.$cont = (0, _jquery2.default)("#nav");
+            _this.$list = (0, _jquery2.default)("#nav-list");
+            _this.$item = _this.$list.find(".nav-item");
+            _this.$link = _this.$list.find(".nav-link");
+            _this.$links = _this.$cont.find("a").not('[target="_blank"]');
 
-            _this.$btn = (0, _jquery2.default)('#nav-btn');
+            _this.$btn = (0, _jquery2.default)("#nav-btn");
             _this.hasOverlay = false;
-            if (_this.hasOverlay) _this.$overlay = (0, _jquery2.default)('#nav-overlay');
+            if (_this.hasOverlay) _this.$overlay = (0, _jquery2.default)("#nav-overlay");
 
-            _this.$bar = (0, _jquery2.default)('#navbar');
-            _this.$btnBar = _this.$bar.find('.nav-btn-bar');
+            _this.$bar = (0, _jquery2.default)("#navbar");
+            _this.$btnBar = _this.$bar.find(".nav-btn-bar");
             // this.$barBg = $('#navbar-bg');
 
             // this.$backTop = $('#back-top');
@@ -78,38 +78,37 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
             _AbstractNav.prototype.initEvents.call(this, router);
 
             if (router.options.ajaxEnabled) {
-                this.$links.on('click', router.onLinkClick.bind(router));
+                this.$links.on("click", router.onLinkClick.bind(router));
             }
 
-            this.$btn.on('click', this.btnClick.bind(this));
-            if (this.hasOverlay) this.$overlay.on('click', this.close.bind(this));
+            this.$btn.on("click", this.btnClick.bind(this));
+            if (this.hasOverlay) this.$overlay.on("click", this.close.bind(this));
 
             // this.$backTop.on('click', this.backTopOnClick.bind(this));
 
             // window.addEventListener('keyup', this.onKeyUp.bind(this));
-            window.addEventListener('scroll', this.onScroll.bind(this));
-            window.addEventListener('resize', (0, _debounce.debounce)(this.onResize.bind(this), 100, false));
+            window.addEventListener("scroll", this.onScroll.bind(this));
+            window.addEventListener("resize", (0, _debounce.debounce)(this.onResize.bind(this), 100, false));
         };
 
         Nav.prototype.destroyEvents = function destroyEvents(router) {
             _AbstractNav.prototype.destroyEvents.call(this, router);
 
             if (router.options.ajaxEnabled) {
-                this.$links.off('click', router.onLinkClick.bind(router));
+                this.$links.off("click", router.onLinkClick.bind(router));
             }
 
-            this.$btn.off('click', this.btnClick.bind(this));
-            if (this.hasOverlay) this.$overlay.off('click', this.close.bind(this));
+            this.$btn.off("click", this.btnClick.bind(this));
+            if (this.hasOverlay) this.$overlay.off("click", this.close.bind(this));
 
             // this.$backTop.off('click', this.backTopOnClick.bind(this));
 
             // window.removeEventListener('keyup', this.onKeyUp.bind(this));
-            window.removeEventListener('scroll', this.onScroll.bind(this));
-            window.removeEventListener('resize', (0, _debounce.debounce)(this.onResize.bind(this), 100, false));
+            window.removeEventListener("scroll", this.onScroll.bind(this));
+            window.removeEventListener("resize", (0, _debounce.debounce)(this.onResize.bind(this), 100, false));
         };
 
         Nav.prototype.onScroll = function onScroll(e) {
-
             if (window.scrollY > this.minifyLimit) {
                 if (!this.minified) this.minify();
             } else {
@@ -118,12 +117,12 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
         };
 
         Nav.prototype.minify = function minify() {
-            _utils.Utils.addClass(document.body, 'nav-minified');
+            _utils.Utils.addClass(document.body, "nav-minified");
             this.minified = true;
         };
 
         Nav.prototype.unminify = function unminify() {
-            _utils.Utils.removeClass(document.body, 'nav-minified');
+            _utils.Utils.removeClass(document.body, "nav-minified");
             this.minified = false;
         };
 
@@ -139,24 +138,31 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
 
         Nav.prototype.open = function open() {
             if (!_bootstrapMedia.BootstrapMedia.isMinSM() && !this.opened) {
+                _utils.Utils.addClass(document.body, "nav-opened");
 
-                _utils.Utils.addClass(document.body, 'nav-opened');
-
-                this.$cont[0].style.display = 'block';
-                TweenLite.fromTo(this.$cont, 0.4, { xPercent: -100 }, { xPercent: 0 });
+                this.$cont[0].style.display = "block";
+                gsap.fromTo(this.$cont, { xPercent: -100 }, { xPercent: 0, duration: 0.4 });
 
                 if (this.hasOverlay) {
-                    this.$overlay[0].style.display = 'block';
-                    TweenLite.to(this.$overlay, 1.2, { opacity: 1 });
+                    this.$overlay[0].style.display = "block";
+                    gsap.to(this.$overlay, { opacity: 1, duration: 1.2 });
                 }
 
                 // Btn
-                TweenLite.to(this.$btnBar[0], 0.3, { y: 9 });
-                TweenLite.to(this.$btnBar[2], 0.3, { y: -9 });
-                TweenLite.to(this.$btnBar[1], 0.3, { opacity: 0 });
+                gsap.to(this.$btnBar[0], { y: 9, duration: 0.3 });
+                gsap.to(this.$btnBar[2], { y: -9, duration: 0.3 });
+                gsap.to(this.$btnBar[1], { opacity: 0, duration: 0.3 });
 
-                TweenLite.to(this.$btnBar[0], 0.4, { rotation: 45, delay: 0.2 });
-                TweenLite.to(this.$btnBar[2], 0.4, { rotation: -45, delay: 0.2 });
+                gsap.to(this.$btnBar[0], {
+                    rotation: 45,
+                    duration: 0.4,
+                    delay: 0.2
+                });
+                gsap.to(this.$btnBar[2], {
+                    rotation: -45,
+                    duration: 0.4,
+                    delay: 0.2
+                });
 
                 this.opened = true;
             }
@@ -166,38 +172,41 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
             var _this2 = this;
 
             if (!_bootstrapMedia.BootstrapMedia.isMinSM() && this.opened) {
-
-                TweenLite.to(this.$cont, 0.4, {
-                    xPercent: -100, onComplete: function onComplete() {
-                        if (!_this2.opened) _this2.$cont[0].style.display = 'none';
+                gsap.to(this.$cont, {
+                    xPercent: -100,
+                    duration: 0.4,
+                    onComplete: function onComplete() {
+                        if (!_this2.opened) _this2.$cont[0].style.display = "none";
                         // document.body.removeAttribute('style');
                     }
                 });
 
                 if (this.hasOverlay) {
-                    TweenLite.to(this.$overlay, 1.2, {
-                        opacity: 0, onComplete: function onComplete() {
-                            _this2.$overlay[0].style.display = 'none';
+                    gsap.to(this.$overlay, {
+                        opacity: 0,
+                        duration: 1.2,
+                        onComplete: function onComplete() {
+                            _this2.$overlay[0].style.display = "none";
                         }
                     });
                 }
 
                 // Btn
-                TweenLite.to(this.$btnBar[0], 0.4, { rotation: 0 });
-                TweenLite.to(this.$btnBar[2], 0.4, { rotation: 0 });
+                gsap.to(this.$btnBar[0], { rotation: 0, duration: 0.4 });
+                gsap.to(this.$btnBar[2], { rotation: 0, duration: 0.4 });
 
-                TweenLite.to(this.$btnBar[0], 0.3, { y: 0, delay: 0.2 });
-                TweenLite.to(this.$btnBar[2], 0.3, { y: 0, delay: 0.2 });
-                TweenLite.to(this.$btnBar[1], 0.3, { opacity: 1, delay: 0.2 });
+                gsap.to(this.$btnBar[0], { y: 0, duration: 0.3, delay: 0.2 });
+                gsap.to(this.$btnBar[2], { y: 0, duration: 0.3, delay: 0.2 });
+                gsap.to(this.$btnBar[1], { opacity: 1, duration: 0.3, delay: 0.2 });
 
-                _utils.Utils.removeClass(document.body, 'nav-opened');
+                _utils.Utils.removeClass(document.body, "nav-opened");
 
                 this.opened = false;
             }
         };
 
         Nav.prototype.backTopOnClick = function backTopOnClick(e) {
-            TweenLite.to(window, 0.6, { scrollTo: { y: 0 } });
+            gsap.to(window, { scrollTo: { y: 0 }, duration: 0.6 });
             e.preventDefault();
         };
 

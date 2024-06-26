@@ -1,18 +1,10 @@
-define(["exports", "scrollTo", "utils/utils", "abstract-page", "utils/bootstrapMedia"], function (exports, _scrollTo, _utils, _abstractPage, _bootstrapMedia) {
+define(["exports", "utils/utils", "abstract-page", "utils/bootstrapMedia"], function (exports, _utils, _abstractPage, _bootstrapMedia) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
     exports.DefaultPage = undefined;
-
-    var _scrollTo2 = _interopRequireDefault(_scrollTo);
-
-    function _interopRequireDefault(obj) {
-        return obj && obj.__esModule ? obj : {
-            default: obj
-        };
-    }
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -58,6 +50,8 @@ define(["exports", "scrollTo", "utils/utils", "abstract-page", "utils/bootstrapM
             // if (this.context == "ajax") this.initAjax();
 
             this.$scrollToLink = this.$cont.find(".scroll-to-link");
+
+            this.viewportSize = _utils.Utils.getViewportSize();
         };
 
         DefaultPage.prototype.initEvents = function initEvents() {
@@ -77,7 +71,10 @@ define(["exports", "scrollTo", "utils/utils", "abstract-page", "utils/bootstrapM
                 var yPos = $target.offset().top - 20;
                 yPos -= _bootstrapMedia.BootstrapMedia.isMinSM() ? this.router.nav.$cont[0].offsetHeight : this.router.nav.$bar[0].offsetHeight;
                 // console.log(yPos);
-                TweenLite.to(window, 0.6, { scrollTo: { y: Math.round(yPos) } });
+                gsap.to(window, {
+                    scrollTo: { y: Math.round(yPos) },
+                    duration: 0.6
+                });
             }
             e.preventDefault();
         };
@@ -102,6 +99,12 @@ define(["exports", "scrollTo", "utils/utils", "abstract-page", "utils/bootstrapM
                     page_location: window.location.pathname
                 });
             }
+        };
+
+        DefaultPage.prototype.onResize = function onResize(e) {
+            _AbstractPage.prototype.onResize.call(this, e);
+
+            this.viewportSize = _utils.Utils.getViewportSize();
         };
 
         return DefaultPage;

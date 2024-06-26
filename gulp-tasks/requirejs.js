@@ -24,6 +24,7 @@ gulp.task("requirejs", ["babel", "clean-build"], function () {
                     jquery: "empty:",
                     TweenLite: "empty:",
                     TweenMax: "empty:",
+                    gsap: "empty:",
                     /*
                      * Compile dep
                      */
@@ -31,8 +32,12 @@ gulp.task("requirejs", ["babel", "clean-build"], function () {
                         "./../node_modules/vanilla-lazyload/dist/lazyload",
                     waitForImages:
                         "./../node_modules/jquery.waitForImages/dist/jquery.waitforimages.min",
-                    scrollTo:
-                        "./../node_modules/gsap/src/minified/plugins/ScrollToPlugin.min",
+                    ScrollTrigger:
+                        "./../node_modules/gsap/dist/ScrollTrigger.min",
+                    ScrollToPlugin:
+                        "./../node_modules/gsap/dist/ScrollToPlugin.min",
+                    // scrollTo:
+                    // "./../node_modules/gsap/src/minified/plugins/ScrollToPlugin.min",
                     isMobile: "./../node_modules/ismobilejs/dist/isMobile.min",
                     actual: "./../node_modules/jquery.actual/jquery.actual.min",
                     Hammer: "./../node_modules/hammerjs/hammer.min",

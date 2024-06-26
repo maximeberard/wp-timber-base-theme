@@ -1,4 +1,4 @@
-define(["exports", "jquery", "loglevel", "TweenMax", "masonry", "blocks/default-block", "utils/bootstrapMedia"], function (exports, _jquery, _loglevel, _TweenMax, _masonry, _defaultBlock, _bootstrapMedia) {
+define(["exports", "jquery", "loglevel", "masonry", "blocks/default-block", "utils/bootstrapMedia"], function (exports, _jquery, _loglevel, _masonry, _defaultBlock, _bootstrapMedia) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -9,8 +9,6 @@ define(["exports", "jquery", "loglevel", "TweenMax", "masonry", "blocks/default-
     var _jquery2 = _interopRequireDefault(_jquery);
 
     var _loglevel2 = _interopRequireDefault(_loglevel);
-
-    var _TweenMax2 = _interopRequireDefault(_TweenMax);
 
     var _masonry2 = _interopRequireDefault(_masonry);
 
@@ -81,9 +79,9 @@ define(["exports", "jquery", "loglevel", "TweenMax", "masonry", "blocks/default-
         };
 
         MasonryBlock.prototype.initMasonry = function initMasonry() {
-            this.masonry = new _masonry2.default('.list', {
-                itemSelector: '.item',
-                columnWidth: '.item'
+            this.masonry = new _masonry2.default(".list", {
+                itemSelector: ".item",
+                columnWidth: ".item"
             });
         };
 

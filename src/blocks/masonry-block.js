@@ -8,13 +8,11 @@
 
 import $ from "jquery";
 import log from "loglevel";
-import TweenMax from "TweenMax";
 import Masonry from "masonry";
 import { DefaultBlock } from "blocks/default-block";
 import { BootstrapMedia } from "utils/bootstrapMedia";
 
 export class MasonryBlock extends DefaultBlock {
-
     init() {
         super.init();
 
@@ -22,7 +20,7 @@ export class MasonryBlock extends DefaultBlock {
         if (BootstrapMedia.isMinSM()) this.initMasonry();
     }
 
-    destroy(){
+    destroy() {
         super.destroy();
 
         if (this.masonry !== null) this.masonry.destroy();
@@ -37,9 +35,9 @@ export class MasonryBlock extends DefaultBlock {
     }
 
     initMasonry() {
-        this.masonry = new Masonry('.list', {
-            itemSelector: '.item',
-            columnWidth: '.item'
+        this.masonry = new Masonry(".list", {
+            itemSelector: ".item",
+            columnWidth: ".item",
         });
     }
 
@@ -51,4 +49,3 @@ export class MasonryBlock extends DefaultBlock {
         }
     }
 }
-

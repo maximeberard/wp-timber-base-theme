@@ -12,7 +12,6 @@ define(["exports"], function (exports) {
   }
 
   var AbstractNav = exports.AbstractNav = function () {
-
     /**
      * Interface for a navigation element.
      *

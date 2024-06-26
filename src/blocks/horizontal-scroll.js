@@ -125,7 +125,7 @@ export class HorizontalScroll extends DefaultBlock {
         // console.log('inner X from : '+this.innerXFrom);
 
         if (this.firstSetup) {
-            // TweenLite.to(this.$cont, 0.8, {opacity:1});
+            // gsap.to(this.$cont, {opacity:1, duration:0.8, });
             this.firstSetup = false;
         }
 
@@ -151,7 +151,7 @@ export class HorizontalScroll extends DefaultBlock {
     //         this.innerXCurrent = this.innerXFrom;
     //     }
 
-    //     TweenLite.set(this.$inner, {x:this.innerXCurrent});
+    //     gsap.set(this.$inner, {x:this.innerXCurrent});
 
     //     this.RAF = requestAnimFrame(this.bindedOnFrame);
     // }
@@ -167,8 +167,8 @@ export class HorizontalScroll extends DefaultBlock {
             { x: this.innerXTo, ease: Linear.easeNone }
         );
         // this.itemTimeline.pause();
-        // TweenLite.set(this.$inner, {x:this.innerXFrom});
-        // TweenLite.fromTo(this.$inner, 5, {x:this.innerXFrom}, {x:this.innerXTo, ease:Linear.none});
+        // gsap.set(this.$inner, {x:this.innerXFrom});
+        // gsap.fromTo(this.$inner, {x:this.innerXFrom}, {x:this.innerXTo, duration:5, ease:Linear.none});
     }
 
     onAnimationComplete() {

@@ -1,4 +1,4 @@
-define(["exports", "jquery", "TweenMax", "loglevel", "abstract-block"], function (exports, _jquery, _TweenMax, _loglevel, _abstractBlock) {
+define(["exports", "jquery", "loglevel", "abstract-block"], function (exports, _jquery, _loglevel, _abstractBlock) {
     "use strict";
 
     Object.defineProperty(exports, "__esModule", {
@@ -7,8 +7,6 @@ define(["exports", "jquery", "TweenMax", "loglevel", "abstract-block"], function
     exports.ContactBlock = undefined;
 
     var _jquery2 = _interopRequireDefault(_jquery);
-
-    var _TweenMax2 = _interopRequireDefault(_TweenMax);
 
     var _loglevel2 = _interopRequireDefault(_loglevel);
 
@@ -62,56 +60,64 @@ define(["exports", "jquery", "TweenMax", "loglevel", "abstract-block"], function
         ContactBlock.prototype.init = function init() {
             _AbstractBlock.prototype.init.call(this);
 
-            this.$form = this.$cont.find('form');
-            this.$formBtn = this.$form.find('button');
-            this.$formMessage = this.$cont.find('.form-message');
+            this.$form = this.$cont.find("form");
+            this.$formBtn = this.$form.find("button");
+            this.$formMessage = this.$cont.find(".form-message");
         };
 
         ContactBlock.prototype.initEvents = function initEvents() {
             _AbstractBlock.prototype.initEvents.call(this);
 
-            if (this.$form.length) this.$form.on('submit', _jquery2.default.proxy(this.formSubmit, this));
+            if (this.$form.length) this.$form.on("submit", _jquery2.default.proxy(this.formSubmit, this));
         };
 
         ContactBlock.prototype.destroyEvents = function destroyEvents() {
             _AbstractBlock.prototype.destroyEvents.call(this);
 
-            if (this.$form.length) this.$form.off('submit', _jquery2.default.proxy(this.formSubmit, this));
+            if (this.$form.length) this.$form.off("submit", _jquery2.default.proxy(this.formSubmit, this));
         };
 
         ContactBlock.prototype.formSubmit = function formSubmit(e) {
             var _this2 = this;
 
-            TweenLite.to(this.$formMessage, 0.4, { height: 0 });
+            gsap.to(this.$formMessage, { height: 0, duration: 0.4 });
 
             _jquery2.default.ajax({
                 url: e.currentTarget.action,
                 data: this.$form.serialize(),
-                type: 'post',
-                dataType: 'json',
+                type: "post",
+                dataType: "json",
                 success: function success(data) {
-                    _loglevel2.default.debug('SUCCESS');
+                    _loglevel2.default.debug("SUCCESS");
                     _loglevel2.default.debug(data.status);
-                    if (data.status != 'success') {
-                        _this2.$formMessage[0].className = 'form-message form-message-' + data.status;
-                        _this2.$formMessage[0].innerHTML = '<span>' + data.message + '</span>';
+                    if (data.status != "success") {
+                        _this2.$formMessage[0].className = "form-message form-message-" + data.status;
+                        _this2.$formMessage[0].innerHTML = "<span>" + data.message + "</span>";
                     } else {
-                        _this2.$formMessage[0].className = 'form-message form-message-hidden form-message-' + data.status;
-                        _this2.$formMessage[0].innerHTML = '<span>' + data.message + '</span>';
+                        _this2.$formMessage[0].className = "form-message form-message-hidden form-message-" + data.status;
+                        _this2.$formMessage[0].innerHTML = "<span>" + data.message + "</span>";
                     }
 
-                    var height = _this2.$formMessage.find('span').actual('outerHeight');
-                    TweenLite.to(_this2.$formMessage, 0.6, { height: height, delay: 0.2 });
+                    var height = _this2.$formMessage.find("span").actual("outerHeight");
+                    gsap.to(_this2.$formMessage, {
+                        height: height,
+                        duration: 0.6,
+                        delay: 0.2
+                    });
                 },
                 error: function error(data) {
-                    _loglevel2.default.debug('ERROR');
+                    _loglevel2.default.debug("ERROR");
                     data = data.responseJSON;
                     _loglevel2.default.debug(data);
-                    _this2.$formMessage[0].className = 'form-message form-message-hidden form-message-error form-message-' + data.status;
-                    _this2.$formMessage[0].innerHTML = '<span>' + data.errors + '</span>';
+                    _this2.$formMessage[0].className = "form-message form-message-hidden form-message-error form-message-" + data.status;
+                    _this2.$formMessage[0].innerHTML = "<span>" + data.errors + "</span>";
 
-                    var height = _this2.$formMessage.find('span').actual('outerHeight');
-                    TweenLite.to(_this2.$formMessage, 0.6, { height: height, delay: 0.2 });
+                    var height = _this2.$formMessage.find("span").actual("outerHeight");
+                    gsap.to(_this2.$formMessage, {
+                        height: height,
+                        duration: 0.6,
+                        delay: 0.2
+                    });
                 }
             });
 

@@ -6,11 +6,9 @@
  * @author Maxime Bérard
  */
 
-// import {AbstractPage} from "abstract-page";
 import { DefaultPage } from "pages/default-page";
 
-export class Page extends DefaultPage { // extends AbstractPage
-
+export class Page extends DefaultPage {
     init() {
         super.init();
     }

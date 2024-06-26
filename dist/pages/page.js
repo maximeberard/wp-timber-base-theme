@@ -45,8 +45,6 @@ define(["exports", "pages/default-page"], function (exports, _defaultPage) {
             return _possibleConstructorReturn(this, _DefaultPage.apply(this, arguments));
         }
 
-        // extends AbstractPage
-
         Page.prototype.init = function init() {
             _DefaultPage.prototype.init.call(this);
         };

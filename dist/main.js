@@ -1,9 +1,11 @@
-define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/polyfills", "utils/gaTrackErrors", "common/nav", "router", "graphicLoader", "class-factory"], function (_jquery, _TweenMax, _isMobile, _loglevel, _utils, _polyfills, _gaTrackErrors, _nav, _router, _graphicLoader, _classFactory) {
+define(["jquery", "gsap", "ScrollToPlugin", "isMobile", "loglevel", "utils/utils", "utils/polyfills", "utils/gaTrackErrors", "common/nav", "router", "graphicLoader", "class-factory"], function (_jquery, _gsap, _ScrollToPlugin, _isMobile, _loglevel, _utils, _polyfills, _gaTrackErrors, _nav, _router, _graphicLoader, _classFactory) {
   "use strict";
 
   var _jquery2 = _interopRequireDefault(_jquery);
 
-  var _TweenMax2 = _interopRequireDefault(_TweenMax);
+  var _gsap2 = _interopRequireDefault(_gsap);
+
+  var _ScrollToPlugin2 = _interopRequireDefault(_ScrollToPlugin);
 
   var _isMobile2 = _interopRequireDefault(_isMobile);
 
@@ -32,10 +34,19 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
   //     log.setLevel(5);
   // }
 
+  console.log("OK");
+
   /**
-   * Set default Tween ease
+   * gsap - set default ease
    */
-  TweenLite.defaultEase = Quart.easeOut;
+
+  // import { Loader } from "common/loader";
+
+  // import ScrollTrigger from "ScrollTrigger";
+
+  // import TweenMax from "TweenMax";
+  _gsap2.default.defaultEase = Power2.out; // Quad.easeInOut;
+  _gsap2.default.registerPlugin(_ScrollToPlugin2.default); // ScrollTrigger
 
   /**
    * Log credits
@@ -57,8 +68,6 @@ define(["jquery", "TweenMax", "isMobile", "loglevel", "utils/utils", "utils/poly
   /*
    * Declare polyfills
    */
-
-  // import { Loader } from "common/loader";
   (0, _polyfills.polyfills)();
 
   /**

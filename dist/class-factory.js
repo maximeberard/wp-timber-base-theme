@@ -39,8 +39,8 @@ define(["exports", "loglevel", "pages/page", "pages/home", "abstract-block", "bl
          */
         ClassFactory.prototype.getPageInstance = function getPageInstance(nodeTypeName, router, $cont, context, nodeType, isHome) {
             switch (nodeTypeName) {
-                case 'home':
-                    _loglevel2.default.debug('Create new home');
+                case "home":
+                    _loglevel2.default.debug("Create new home");
                     return new _home.Home(router, $cont, context, nodeType, isHome);
                 default:
                     _loglevel2.default.info('"' + nodeTypeName + '" has no defined route, using Page.');
@@ -61,13 +61,15 @@ define(["exports", "loglevel", "pages/page", "pages/home", "abstract-block", "bl
 
         ClassFactory.prototype.getBlockInstance = function getBlockInstance(nodeTypeName, page, $cont) {
             switch (nodeTypeName) {
-                case 'in-view-block':
+                case "in-view-block":
                     return new _inViewBlock.InviewBlock(page, $cont, nodeTypeName);
-                /*case 'contact-block':
-                    return new ContactBlock(page, $cont, nodeTypeName);*/
+                // case 'contact-block':
+                //     return new ContactBlock(page, $cont, nodeTypeName);
+                // case "horizontal-scroll":
+                //     return new HorizontalScroll(page, $cont, nodeTypeName);
                 default:
                 /*log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
-                return new AbstractBlock(page, $cont, nodeTypeName);*/
+                    return new AbstractBlock(page, $cont, nodeTypeName);*/
             }
         };
 

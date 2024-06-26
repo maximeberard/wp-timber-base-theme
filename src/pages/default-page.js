@@ -6,7 +6,7 @@
  * @author Maxime Bérard
  */
 
-import scrollTo from "scrollTo";
+// import scrollTo from "scrollTo";
 import { Utils } from "utils/utils";
 import { AbstractPage } from "abstract-page";
 import { BootstrapMedia } from "utils/bootstrapMedia";
@@ -43,8 +43,9 @@ export class DefaultPage extends AbstractPage {
                 ? this.router.nav.$cont[0].offsetHeight
                 : this.router.nav.$bar[0].offsetHeight;
             // console.log(yPos);
-            TweenLite.to(window, 0.6, {
-                scrollTo: { y: Math.round(yPos), autokill: false },
+            gsap.to(window, {
+                scrollTo: { y: Math.round(yPos) },
+                duration: 0.6,
             });
         }
         e.preventDefault();

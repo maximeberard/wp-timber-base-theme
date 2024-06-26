@@ -6,7 +6,7 @@
  * @author Maxime Bérard
  */
 import $ from "jquery";
-import scrollTo from "scrollTo";
+// import scrollTo from "scrollTo";
 import { Utils } from "utils/utils";
 import { debounce } from "utils/debounce";
 import { AbstractNav } from "abstract-nav";
@@ -111,25 +111,32 @@ export class Nav extends AbstractNav {
             Utils.addClass(document.body, "nav-opened");
 
             this.$cont[0].style.display = "block";
-            TweenLite.fromTo(
+            gsap.fromTo(
                 this.$cont,
-                0.4,
                 { xPercent: -100 },
-                { xPercent: 0 }
+                { xPercent: 0, duration: 0.4 }
             );
 
             if (this.hasOverlay) {
                 this.$overlay[0].style.display = "block";
-                TweenLite.to(this.$overlay, 1.2, { opacity: 1 });
+                gsap.to(this.$overlay, { opacity: 1, duration: 1.2 });
             }
 
             // Btn
-            TweenLite.to(this.$btnBar[0], 0.3, { y: 9 });
-            TweenLite.to(this.$btnBar[2], 0.3, { y: -9 });
-            TweenLite.to(this.$btnBar[1], 0.3, { opacity: 0 });
+            gsap.to(this.$btnBar[0], { y: 9, duration: 0.3 });
+            gsap.to(this.$btnBar[2], { y: -9, duration: 0.3 });
+            gsap.to(this.$btnBar[1], { opacity: 0, duration: 0.3 });
 
-            TweenLite.to(this.$btnBar[0], 0.4, { rotation: 45, delay: 0.2 });
-            TweenLite.to(this.$btnBar[2], 0.4, { rotation: -45, delay: 0.2 });
+            gsap.to(this.$btnBar[0], {
+                rotation: 45,
+                duration: 0.4,
+                delay: 0.2,
+            });
+            gsap.to(this.$btnBar[2], {
+                rotation: -45,
+                duration: 0.4,
+                delay: 0.2,
+            });
 
             this.opened = true;
         }
@@ -137,8 +144,9 @@ export class Nav extends AbstractNav {
 
     close() {
         if (!BootstrapMedia.isMinSM() && this.opened) {
-            TweenLite.to(this.$cont, 0.4, {
+            gsap.to(this.$cont, {
                 xPercent: -100,
+                duration: 0.4,
                 onComplete: () => {
                     if (!this.opened) this.$cont[0].style.display = "none";
                     // document.body.removeAttribute('style');
@@ -146,8 +154,9 @@ export class Nav extends AbstractNav {
             });
 
             if (this.hasOverlay) {
-                TweenLite.to(this.$overlay, 1.2, {
+                gsap.to(this.$overlay, {
                     opacity: 0,
+                    duration: 1.2,
                     onComplete: () => {
                         this.$overlay[0].style.display = "none";
                     },
@@ -155,12 +164,12 @@ export class Nav extends AbstractNav {
             }
 
             // Btn
-            TweenLite.to(this.$btnBar[0], 0.4, { rotation: 0 });
-            TweenLite.to(this.$btnBar[2], 0.4, { rotation: 0 });
+            gsap.to(this.$btnBar[0], { rotation: 0, duration: 0.4 });
+            gsap.to(this.$btnBar[2], { rotation: 0, duration: 0.4 });
 
-            TweenLite.to(this.$btnBar[0], 0.3, { y: 0, delay: 0.2 });
-            TweenLite.to(this.$btnBar[2], 0.3, { y: 0, delay: 0.2 });
-            TweenLite.to(this.$btnBar[1], 0.3, { opacity: 1, delay: 0.2 });
+            gsap.to(this.$btnBar[0], { y: 0, duration: 0.3, delay: 0.2 });
+            gsap.to(this.$btnBar[2], { y: 0, duration: 0.3, delay: 0.2 });
+            gsap.to(this.$btnBar[1], { opacity: 1, duration: 0.3, delay: 0.2 });
 
             Utils.removeClass(document.body, "nav-opened");
 
@@ -169,7 +178,7 @@ export class Nav extends AbstractNav {
     }
 
     backTopOnClick(e) {
-        TweenLite.to(window, 0.6, { scrollTo: { y: 0, autokill: false } });
+        gsap.to(window, { scrollTo: { y: 0 }, duration: 0.6 });
         e.preventDefault();
     }
 

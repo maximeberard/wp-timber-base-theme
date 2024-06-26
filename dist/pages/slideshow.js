@@ -60,20 +60,20 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
         SlideshowPage.prototype.init = function init() {
             _DefaultPage.prototype.init.call(this);
 
-            this.$image = this.$cont.find('.galerie-image');
+            this.$image = this.$cont.find(".galerie-image");
 
             // Slideshow
-            this.$slideshow = this.$cont.find('.galerie-slideshow');
-            this.$slideshowImage = this.$slideshow.find('.galerie-slideshow-image');
-            this.$slideshowImg = this.$slideshowImage.find('.galerie-slideshow-img');
+            this.$slideshow = this.$cont.find(".galerie-slideshow");
+            this.$slideshowImage = this.$slideshow.find(".galerie-slideshow-image");
+            this.$slideshowImg = this.$slideshowImage.find(".galerie-slideshow-img");
             this.slideshowImageLength = this.$slideshowImage.length;
             this.slideshowImg = [];
             this.slideshowImagesLoaded = 0;
             this.slideshowFirstOpening = true;
 
             // this.$slideshowCurrentText = this.$slideshow.find('.galerie-slideshow-current');
-            this.$slideshowNavItem = this.$slideshow.find('.galerie-slideshow-nav-item');
-            this.$slideshowClose = this.$slideshow.find('.galerie-slideshow-close');
+            this.$slideshowNavItem = this.$slideshow.find(".galerie-slideshow-nav-item");
+            this.$slideshowClose = this.$slideshow.find(".galerie-slideshow-close");
 
             this.slideshowOpened = false;
             this.slideshowIndexActive = null;
@@ -86,34 +86,34 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
         SlideshowPage.prototype.initEvents = function initEvents() {
             _DefaultPage.prototype.initEvents.call(this);
 
-            this.$image.on('click', this.imageOnClick.bind(this));
+            this.$image.on("click", this.imageOnClick.bind(this));
 
-            window.addEventListener('keyup', this.windowOnKeyUp.bind(this));
+            window.addEventListener("keyup", this.windowOnKeyUp.bind(this));
             if (this.slideshowImageLength > 1) {
                 // this.router.deviceType == 'mobile'
-                this.hammer.on('swipe', this.slideshowOnSwipe.bind(this));
+                this.hammer.on("swipe", this.slideshowOnSwipe.bind(this));
             }
-            this.$slideshowNavItem.on('click', this.slideshowNavItemOnClick.bind(this));
-            this.$slideshowClose.on('click', this.slideshowCloseOnClick.bind(this));
+            this.$slideshowNavItem.on("click", this.slideshowNavItemOnClick.bind(this));
+            this.$slideshowClose.on("click", this.slideshowCloseOnClick.bind(this));
         };
 
         SlideshowPage.prototype.destroyEvents = function destroyEvents() {
             _DefaultPage.prototype.destroyEvents.call(this);
 
-            this.$image.off('click', this.imageOnClick.bind(this));
+            this.$image.off("click", this.imageOnClick.bind(this));
 
-            window.removeEventListener('keyup', this.windowOnKeyUp.bind(this));
+            window.removeEventListener("keyup", this.windowOnKeyUp.bind(this));
             if (this.slideshowImageLength > 1) {
                 // this.router.deviceType == 'mobile'
-                this.hammer.off('swipe', this.slideshowOnSwipe.bind(this));
+                this.hammer.off("swipe", this.slideshowOnSwipe.bind(this));
             }
-            this.$slideshowNavItem.off('click', this.slideshowNavItemOnClick.bind(this));
-            this.$slideshowClose.off('click', this.slideshowCloseOnClick.bind(this));
+            this.$slideshowNavItem.off("click", this.slideshowNavItemOnClick.bind(this));
+            this.$slideshowClose.off("click", this.slideshowCloseOnClick.bind(this));
         };
 
         SlideshowPage.prototype.imageOnClick = function imageOnClick(e) {
             if (_bootstrapMedia.BootstrapMedia.isMinSM()) {
-                var index = Number(e.currentTarget.getAttribute('data-index'));
+                var index = Number(e.currentTarget.getAttribute("data-index"));
                 // console.log('img on click : ' + index);
                 this.openSlideshow(index);
             }
@@ -123,10 +123,10 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
         SlideshowPage.prototype.slideshowNavItemOnClick = function slideshowNavItemOnClick(e) {
             if (!this.slideshowOpened) return;
 
-            if (e.currentTarget.className.indexOf('prev') >= 0) {
-                this.switchImage(null, 'left');
+            if (e.currentTarget.className.indexOf("prev") >= 0) {
+                this.switchImage(null, "left");
             } else {
-                this.switchImage(null, 'right');
+                this.switchImage(null, "right");
             }
             e.preventDefault();
         };
@@ -148,11 +148,11 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
                     break;
                 case 37:
                     // <-
-                    this.switchImage(null, 'left');
+                    this.switchImage(null, "left");
                     break;
                 case 39:
                     // ->
-                    this.switchImage(null, 'right');
+                    this.switchImage(null, "right");
                     break;
             }
         };
@@ -165,14 +165,14 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
                 this.slideshowFirstOpening = false;
             }
 
-            this.$slideshow[0].style.display = 'block';
+            this.$slideshow[0].style.display = "block";
 
-            TweenLite.fromTo(this.$slideshow, 0.4, { opacity: 0 }, { opacity: 1 });
+            gsap.fromTo(this.$slideshow, { opacity: 0 }, { opacity: 1, duration: 0.4 });
             // y: this.viewportSize.height y:0
             if (index !== this.slideshowIndexActive) {
-                _utils.Utils.addClass(this.$slideshowImage[index], 'active');
+                _utils.Utils.addClass(this.$slideshowImage[index], "active");
                 if (this.slideshowIndexActive !== null) {
-                    _utils.Utils.removeClass(this.$slideshowImage[this.slideshowIndexActive], 'active');
+                    _utils.Utils.removeClass(this.$slideshowImage[this.slideshowIndexActive], "active");
                 }
                 // this.$slideshowCurrentText[0].innerHTML = (index + 1);
             }
@@ -186,11 +186,11 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
 
             if (!this.slideshowOpened) return;
 
-            TweenLite.to(this.$slideshow, 0.4, { opacity: 1 }); // y: this.viewportSize.height
+            gsap.to(this.$slideshow, { opacity: 1, duration: 0.4 }); // y: this.viewportSize.height
 
             setTimeout(function () {
-                _this2.$slideshow[0].style.display = 'none';
-                _this2.$slideshowImage[_this2.slideshowIndexActive].removeAttribute('style');
+                _this2.$slideshow[0].style.display = "none";
+                _this2.$slideshowImage[_this2.slideshowIndexActive].removeAttribute("style");
             }, 400);
 
             this.slideshowSide = null;
@@ -203,7 +203,7 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
             for (var indexImage = 0; indexImage < this.slideshowImageLength; indexImage++) {
                 this.slideshowImg[indexImage] = new Image();
                 this.slideshowImg[indexImage].onload = this.imageOnLoad.bind(this, indexImage);
-                this.slideshowImg[indexImage].src = this.$slideshowImg[indexImage].getAttribute('data-src');
+                this.slideshowImg[indexImage].src = this.$slideshowImg[indexImage].getAttribute("data-src");
                 this.slideshowImg[indexImage].loaded = false;
             }
         };
@@ -214,7 +214,7 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
 
             this.slideshowImg[index].loaded = true;
             this.slideshowImagesLoaded++;
-            _utils.Utils.addClass(this.$slideshowImage[index], 'loaded');
+            _utils.Utils.addClass(this.$slideshowImage[index], "loaded");
             this.$slideshowImg[index].src = this.slideshowImg[index].src;
 
             // console.log('image on load : ' + index);
@@ -225,7 +225,7 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
 
         SlideshowPage.prototype.slideshowOnSwipe = function slideshowOnSwipe(e) {
             var dir = e.direction; // 2:left - 4:right - 8:up - 16:down
-            if (dir == 2) this.switchImage(null, 'right');else if (dir == 4) this.switchImage(null, 'left');
+            if (dir == 2) this.switchImage(null, "right");else if (dir == 4) this.switchImage(null, "left");
 
             e.preventDefault();
         };
@@ -241,11 +241,11 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
             this.switchActive = true;
 
             if (index !== null) futureIndex = index;else {
-                if (dir == 'left') futureIndex = oldIndex > 0 ? oldIndex - 1 : this.slideshowImageLength - 1;else if (dir == 'right') futureIndex = oldIndex < this.slideshowImageLength - 1 ? oldIndex + 1 : 0;
+                if (dir == "left") futureIndex = oldIndex > 0 ? oldIndex - 1 : this.slideshowImageLength - 1;else if (dir == "right") futureIndex = oldIndex < this.slideshowImageLength - 1 ? oldIndex + 1 : 0;
             }
 
             var oldXTo = this.viewportSize.width;
-            if (dir == 'right') oldXTo *= -1;
+            if (dir == "right") oldXTo *= -1;
             var futureXFrom = -oldXTo;
 
             // console.log('> Switch item : ' + dir);
@@ -253,19 +253,19 @@ define(["exports", "jquery", "Hammer", "masonry", "utils/utils", "pages/default-
             // console.log('future index  : ' + futureIndex);
             // console.log('-------------');
 
-            TweenLite.set(this.$slideshowImage[futureIndex], { x: 0 });
-            _utils.Utils.addClass(this.$slideshowImage[futureIndex], 'future');
-            _utils.Utils.addClass(this.$slideshowImage[futureIndex], 'active');
+            gsap.set(this.$slideshowImage[futureIndex], { x: 0 });
+            _utils.Utils.addClass(this.$slideshowImage[futureIndex], "future");
+            _utils.Utils.addClass(this.$slideshowImage[futureIndex], "active");
 
-            TweenLite.to(this.$slideshowImage[oldIndex], 0.8, { x: oldXTo });
-            TweenLite.fromTo(this.$slideshowImage[futureIndex], 0.8, { x: futureXFrom }, { x: 0 });
+            gsap.to(this.$slideshowImage[oldIndex], { x: oldXTo, duration: 0.8 });
+            gsap.fromTo(this.$slideshowImage[futureIndex], { x: futureXFrom }, { x: 0, duration: 0.8 });
 
             // this.$slideshowCurrentText[0].innerHTML = (futureIndex + 1);
 
             setTimeout(function () {
-                _utils.Utils.removeClass(_this3.$slideshowImage[oldIndex], 'active');
-                _utils.Utils.removeClass(_this3.$slideshowImage[futureIndex], 'future');
-                _this3.$slideshowImage[oldIndex].removeAttribute('style');
+                _utils.Utils.removeClass(_this3.$slideshowImage[oldIndex], "active");
+                _utils.Utils.removeClass(_this3.$slideshowImage[futureIndex], "future");
+                _this3.$slideshowImage[oldIndex].removeAttribute("style");
                 _this3.slideshowIndexActive = futureIndex;
                 _this3.switchActive = false;
             }, 850);
