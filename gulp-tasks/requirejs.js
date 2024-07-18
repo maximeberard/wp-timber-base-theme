@@ -22,9 +22,9 @@ gulp.task("requirejs", ["babel", "clean-build"], function () {
                      * Do not include these lib to load them from CDN
                      */
                     jquery: "empty:",
-                    TweenLite: "empty:",
-                    TweenMax: "empty:",
                     gsap: "empty:",
+                    // TweenLite: "empty:",
+                    // TweenMax: "empty:",
                     /*
                      * Compile dep
                      */

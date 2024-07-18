@@ -14,7 +14,7 @@
         {% endif %} #}
     {% endif %}
 
-    {% set title = function('get_the_title') %}
+    {% set title = fn('get_the_title') %}
     {% set desc = site.description %}
     {# {% if not title %}
         {% set title = site.title %}
@@ -39,6 +39,7 @@
 	<link rel="manifest" href="/site.webmanifest">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ffffff">
 	<meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
 
 	<!-- Facebook  -->
 	<meta property="og:title" content="TimberBaseTheme - SiteDescription">
@@ -55,7 +56,7 @@
 	<meta name="twitter:url" content="{{ shareUrl }}">
 	<meta name="twitter:image" content="{{ shareImage }}">
 
-	{# {{function('wp_head')}} #}
+	{# {{fn('wp_head')}} #}
 
 	<!--
 	# Gulp injected styles

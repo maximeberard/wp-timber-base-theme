@@ -1,5 +1,4 @@
 import $ from "jquery";
-// import TweenMax from "TweenMax";
 import gsap from "gsap";
 import ScrollToPlugin from "ScrollToPlugin";
 // import ScrollTrigger from "ScrollTrigger";
@@ -29,8 +28,6 @@ import { ClassFactory } from "class-factory";
 // } else {
 //     log.setLevel(5);
 // }
-
-console.log("OK");
 
 /**
  * gsap - set default ease

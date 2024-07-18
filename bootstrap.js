@@ -7,8 +7,8 @@ requirejs.config({
          * except for optional libs like Draggable.
          */
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min",
-        TweenMax: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min",
-        TweenLite: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min",
+        // TweenMax: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min",
+        // TweenLite: "//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min",
         gsap: "//cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min",
         // Internal dep
         Lazyload:
