@@ -2,29 +2,31 @@
 {% set devMode = (site.url == 'http://localhost/wordpress') ? true : false %}
 {% set legalsId = 3 %}
 
-<div class="container">
-	<div class="row">
-		<div class="footer-col col-xs-12 col-sm-6">
-            {# &copy;{{'now' | date('Y') }} #}
-			{# Footer widget #}
-			{% if footer %}
-				{{ footer }}
-			{% endif %}
-            {# <a href="{{ fn('get_permalink', legalsId) }}">Mentions légales</a> #}
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col col-xs-12 col-sm-6">
+                {# &copy;{{'now' | date('Y') }} #}
+                {# Footer widget #}
+                {% if footer %}
+                    {{ footer }}
+                {% endif %}
+                {# <a href="{{ fn('get_permalink', legalsId) }}">Mentions légales</a> #}
 
-		</div>
-		<div class="footer-col col-xs-12 col-sm-6">
-			<h3>Suivez-nous</h3>
-			<div class="footer-socials">
-				<a href="https://www.facebook.com" class="footer-social-link" target="_blank">
-					{% include '@templates/svg/use.svg.twig' with {
-                        'classes': ['social-icon'],
-                        'icon': 'icon-facebook'
-                    } only %}
-				</a>
-			</div>
-		</div>
-	</div>
+            </div>
+            <div class="footer-col col-xs-12 col-sm-6">
+                <h3>Suivez-nous</h3>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com" class="footer-social-link" target="_blank">
+                        {% include '@templates/svg/use.svg.twig' with {
+                            'classes': ['social-icon'],
+                            'icon': 'icon-facebook'
+                        } only %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="cookiesconsent"></div>
