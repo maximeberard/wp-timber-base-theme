@@ -1,13 +1,13 @@
 {% if menu %}
-	<ul {% if children %} class="menu-item-children" {% endif %}>
-		{% for item in items %}
-			<li class="{{ item.classes | join(' ') }} menu-item-{{ item.slug }}">
-				<a class="nav-link" href="{{ item.link }}" data-node-name="{{ item.slug }}">{{ item.title }}</a>
-				{% if item.children %}
-					{% include "@templates/common/menu.twig" with {'items': item.children, 'children':true} %}
-				{% endif %}
-			</li>
-		{% endfor %}
-	</ul>
+    <ul {% if children %} class="menu-item-children" {% endif %}>
+        {% for item in items %}
+            <li class="{{ item.classes | join(' ') }} menu-item-{{ item.slug }}">
+                <a class="nav-link" href="{{ item.link }}" data-node-name="{{ item.slug }}">{{ item.title }}</a>
+                {% if item.children %}
+                    {% include "@templates/common/menu.twig" with {'items': item.children, 'children':true} %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 {% endif %}
 

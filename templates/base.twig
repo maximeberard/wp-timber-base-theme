@@ -4,51 +4,51 @@
 
 <body class="{{body_class}}" data-template="base.twig">
 
-	<div id="svg-sprite" style="display:none;">
-		{% include "svg/sprite.twig" %}
-	</div>
+    <div id="svg-sprite" style="display:none;">
+        {% include "svg/sprite.twig" %}
+    </div>
 
-	<div id="navbar" class="visible-xs">
-		<div id="nav-btn">
-			<div class="nav-btn-bar" id="nav-btn-bar-1"></div>
-			<div class="nav-btn-bar" id="nav-btn-bar-2"></div>
-			<div class="nav-btn-bar" id="nav-btn-bar-3"></div>
-		</div>
-		<div id="navbar-logo">
-			{# {% include '@templates/svg/use.svg.twig' with {
-				'classes': ['navbar-logo-icon'],
-				'icon': 'icon-logo'
-			} only %} #}
-		</div>
-	</div>
+    <div id="navbar" class="visible-xs">
+        <div id="nav-btn">
+            <div class="nav-btn-bar" id="nav-btn-bar-1"></div>
+            <div class="nav-btn-bar" id="nav-btn-bar-2"></div>
+            <div class="nav-btn-bar" id="nav-btn-bar-3"></div>
+        </div>
+        <div id="navbar-logo">
+            {# {% include '@templates/svg/use.svg.twig' with {
+                'classes': ['navbar-logo-icon'],
+                'icon': 'icon-logo'
+            } only %} #}
+        </div>
+    </div>
 
-	{# <div id="loading"></div> #}
+    {# <div id="loading"></div> #}
 
     {# {{ __('Translatable string', 'wp-timber-base-theme') }} #}
 
-	<nav id="nav" data-node-type="nav">
+    <nav id="nav" data-node-type="nav">
 
-		<div class="container" id="nav-container">
-			<div class="row" id="nav-row">
+        <div class="container" id="nav-container">
+            <div class="row" id="nav-row">
 
-				<div id="nav-list">
-					{# <a class="nav-link nav-link-home" id="nav-link-home" href="{{site.url}}" rel="home">{{site.name}}</a> #}
-				    {% include "@templates/common/menu.twig" with {'items': menu.get_items, 'children':false} %}
-				</div>
+            <div id="nav-list">
+                {# <a class="nav-link nav-link-home" id="nav-link-home" href="{{site.url}}" rel="home">{{site.name}}</a> #}
+                {% include "@templates/common/menu.twig" with {'items': menu.get_items, 'children':false} %}
+            </div>
 
-				{# <div id="nav-lang">{% do action('wpml_add_language_selector') %}</div> #}
-			</div>
-		</div>
+                {# <div id="nav-lang">{% do action('wpml_add_language_selector') %}</div> #}
+            </div>
+        </div>
 
-		<div id="nav-close" class="visible-xs"></div>
-	</nav>
+        <div id="nav-close" class="visible-xs"></div>
+    </nav>
 
-	<div id="main-container">
-		{% block content %}{% endblock %}
-		<div id="ajax-container"></div>
-	</div>
+    <div id="main-container">
+        {% block content %}{% endblock %}
+        <div id="ajax-container"></div>
+    </div>
 
-	{% include '@templates/common/footer.twig' %}
+    {% include '@templates/common/footer.twig' %}
 
 </body>
 </html>

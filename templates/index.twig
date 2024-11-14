@@ -2,16 +2,16 @@
 
 {% block content %}
 <div class="page-container" data-node-type="home" id="page-container-home" data-is-home="1">
-	
-	<div class="page-content" id="home-content">
-		
-		{% for post in posts %}
-			{% include ['@templates/common/tease-'~post.post_type~'.twig', '@templates/common/tease.twig'] %}
-		{% endfor %}
-		
-		{% include '@templates/partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
 
-	</div>
+    <div class="page-content" id="home-content">
+
+        {% for post in posts %}
+            {% include ['@templates/common/tease-'~post.post_type~'.twig', '@templates/common/tease.twig'] %}
+        {% endfor %}
+
+        {% include '@templates/partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+
+    </div>
 
 </div>
 {% endblock %}
