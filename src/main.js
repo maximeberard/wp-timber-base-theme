@@ -45,7 +45,7 @@ gsap.registerPlugin(ScrollToPlugin); // ScrollTrigger
 //         { name: 'Made by : Maxime Bérard', website: 'www.maximeberard.com' }
 //     ],
 //     [
-//         { name: 'Starting Blocks', website: 'https://startingblocks.rezo-zero.com' },
+//         { name: 'Starting Blocks', website: 'https://github.com/rezozero/starting-blocks' },
 //         { name: 'Timber', website: 'https://upstatement.com/timber' }
 
 //     ],

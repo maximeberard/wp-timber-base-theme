@@ -1,3 +1,14 @@
 /*------------------------------------*\
     PAGES
 \*------------------------------------*/
+
+.in-view-block {
+    .js & {
+        opacity: 0;
+        transition: 0.5s opacity @defaultEase;
+    }
+
+    &.in-view {
+        opacity: 1;
+    }
+}
