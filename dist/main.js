@@ -20,6 +20,7 @@ define(["jquery", "gsap", "ScrollToPlugin", "isMobile", "loglevel", "utils/utils
   // import { BootstrapMedia } from "utils/bootstrapMedia";
   // import { waypoint } from 'waypoint';
   // import scrollTo from "scrollTo";
+  // import Isotope from "isotope";
   // import Masonry from "masonry";
   // import Hammer from "Hammer";
   // import actual from 'actual';
@@ -34,18 +35,14 @@ define(["jquery", "gsap", "ScrollToPlugin", "isMobile", "loglevel", "utils/utils
   //     log.setLevel(5);
   // }
 
-  console.log("OK");
-
   /**
    * gsap - set default ease
    */
+  _gsap2.default.defaultEase = Power2.out; // Quad.easeInOut;
 
   // import { Loader } from "common/loader";
 
   // import ScrollTrigger from "ScrollTrigger";
-
-  // import TweenMax from "TweenMax";
-  _gsap2.default.defaultEase = Power2.out; // Quad.easeInOut;
   _gsap2.default.registerPlugin(_ScrollToPlugin2.default); // ScrollTrigger
 
   /**
@@ -58,7 +55,7 @@ define(["jquery", "gsap", "ScrollToPlugin", "isMobile", "loglevel", "utils/utils
   //         { name: 'Made by : Maxime Bérard', website: 'www.maximeberard.com' }
   //     ],
   //     [
-  //         { name: 'Starting Blocks', website: 'https://startingblocks.rezo-zero.com' },
+  //         { name: 'Starting Blocks', website: 'https://github.com/rezozero/starting-blocks' },
   //         { name: 'Timber', website: 'https://upstatement.com/timber' }
 
   //     ],

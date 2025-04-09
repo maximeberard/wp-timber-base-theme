@@ -42,6 +42,9 @@ define(["exports", "loglevel", "pages/page", "pages/home", "abstract-block", "bl
                 case "home":
                     _loglevel2.default.debug("Create new home");
                     return new _home.Home(router, $cont, context, nodeType, isHome);
+                // case "projects":
+                //     log.debug("Create new projects");
+                //     return new Projects(router, $cont, context, nodeType, isHome);
                 default:
                     _loglevel2.default.info('"' + nodeTypeName + '" has no defined route, using Page.');
                     return new _page.Page(router, $cont, context, nodeType, isHome);
@@ -68,8 +71,8 @@ define(["exports", "loglevel", "pages/page", "pages/home", "abstract-block", "bl
                 // case "horizontal-scroll":
                 //     return new HorizontalScroll(page, $cont, nodeTypeName);
                 default:
-                /*log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
-                    return new AbstractBlock(page, $cont, nodeTypeName);*/
+                    _loglevel2.default.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
+                    return new _abstractBlock.AbstractBlock(page, $cont, nodeTypeName);
             }
         };
 

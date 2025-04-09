@@ -22,13 +22,13 @@ add_image_size('1200x630', 1200, 630, true);
 add_image_size('640x640', 640, 640, true);
 add_image_size('360x360', 360, 360, true);
 // just width
-add_image_size('1920w', 1920, 999, false);
-add_image_size('1480w', 1480, 999, false);
-add_image_size('1140w', 1140, 999, false);
-add_image_size('980w', 980, 999, false);
-add_image_size('640w', 640, 999, false);
-add_image_size('460w', 460, 999, false);
-add_image_size('360w', 360, 999, false);
+add_image_size('1920w', 1920, 0, false);
+add_image_size('1480w', 1480, 0, false);
+add_image_size('1140w', 1140, 0, false);
+add_image_size('980w', 980, 0, false);
+add_image_size('640w', 640, 0, false);
+add_image_size('460w', 460, 0, false);
+add_image_size('360w', 360, 0, false);
 
 
 /* Footer widget */
@@ -45,6 +45,57 @@ function register_custom_widget_area() {
 	));
 }
 add_action( 'widgets_init', 'register_custom_widget_area' );
+
+/**
+ * Add featured image column to WP admin panel - posts AND pages
+ * See: https://bloggerpilot.com/featured-image-admin/
+ */
+
+// Set thumbnail size
+// add_image_size( 'j0e_admin-featured-image', 60, 60, false );
+
+// // Add the posts and pages columns filter. Same function for both.
+// add_filter('manage_posts_columns', 'j0e_add_thumbnail_column', 2);
+// add_filter('manage_pages_columns', 'j0e_add_thumbnail_column', 2);
+// function j0e_add_thumbnail_column($j0e_columns){
+//     $j0e_columns['j0e_thumb'] = __('Image');
+//     return $j0e_columns;
+// }
+
+// // Add featured image thumbnail to the WP Admin table.
+// add_action('manage_posts_custom_column', 'j0e_show_thumbnail_column', 5, 2);
+// add_action('manage_pages_custom_column', 'j0e_show_thumbnail_column', 5, 2);
+// function j0e_show_thumbnail_column($j0e_columns, $j0e_id){
+//     switch($j0e_columns){
+//         case 'j0e_thumb':
+//         if( function_exists('the_post_thumbnail') )
+//             echo the_post_thumbnail( 'j0e_admin-featured-image' );
+//         break;
+//     }
+// }
+
+// // Move the new column at the first place.
+// add_filter('manage_posts_columns', 'j0e_column_order');
+//     function j0e_column_order($columns) {
+//         $n_columns = array();
+//         $move = 'j0e_thumb'; // which column to move
+//         $before = 'title'; // move before this column
+
+//         foreach($columns as $key => $value) {
+//         if ($key==$before){
+//             $n_columns[$move] = $move;
+//         }
+//         $n_columns[$key] = $value;
+//     }
+//     return $n_columns;
+// }
+
+// // Format the column width with CSS
+// add_action('admin_head', 'j0e_add_admin_styles');
+// function j0e_add_admin_styles() {
+//     echo '<style>.column-j0e_thumb {width: 60px;}</style>';
+// }
+
 
 /**
  * If you are installing Timber as a Composer dependency in your theme, you'll need this block

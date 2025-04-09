@@ -3,6 +3,60 @@
 \*------------------------------------*/
 
 .contact-form {
+    position: relative;
+
+    .form-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .screen-reader-response {
+        display: none;
+    }
+
+    .wpcf7-response-output {
+        position: absolute;
+        top: 0;
+        right: @grid-gutter-width / 2;
+        left: @grid-gutter-width / 2;
+        margin: 20px 0;
+        padding: 20px;
+        background: @mainColor;
+        color: @white;
+    }
+
+    .wpcf7-not-valid-tip {
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
+    }
+
+    form[data-status="init"] {
+        padding: 0;
+
+        .wpcf7-response-output {
+            display: none;
+        }
+    }
+
+    form {
+        padding-top: 100px;
+
+        label {
+            width: 100%;
+            font-size: 16px;
+
+            @media (min-width: @screen-sm-min) {
+                font-size: 18px;
+            }
+
+            > span {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+    }
+
     input,
     textarea {
         border: none;
@@ -22,6 +76,7 @@
 
     textarea {
         max-height: 250px;
+        min-height: 250px;
         resize: none;
         border: none;
     }

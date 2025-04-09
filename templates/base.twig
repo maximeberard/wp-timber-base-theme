@@ -32,7 +32,7 @@
             <div class="row" id="nav-row">
 
             <div id="nav-list">
-                {# <a class="nav-link nav-link-home" id="nav-link-home" href="{{site.url}}" rel="home">{{site.name}}</a> #}
+                {# <a class="nav-link nav-link-home{% if fn('is_front_page') %} active{% endif %}" id="nav-link-home" href="{{site.url}}" rel="home">{{site.name}}</a> #}
                 {% include "@templates/common/menu.twig" with {'items': menu.get_items, 'children':false} %}
             </div>
 

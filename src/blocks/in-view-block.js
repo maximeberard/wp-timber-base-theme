@@ -6,83 +6,82 @@
  * @author Maxime Bérard
  */
 
-import $ from 'jquery';
-import {Utils} from "utils/utils";
-import {waypoint} from 'waypoint';
-import {DefaultBlock} from 'blocks/default-block';
-import {BootstrapMedia} from "utils/bootstrapMedia";
+import $ from "jquery";
+import { Utils } from "utils/utils";
+import { waypoint } from "waypoint";
+import { DefaultBlock } from "blocks/default-block";
+import { BootstrapMedia } from "utils/bootstrapMedia";
 
-export class InviewBlock extends DefaultBlock
-{
+export class InviewBlock extends DefaultBlock {
     init() {
         super.init();
 
         // console.log('👀 In view block');
 
-        if (this.page.context == 'static') {
-            let delayInView = 500; // (this.page.context == 'static') ? 500 : 1500;
-            setTimeout(() => {
-                this.initInView();
-                // this.page.router.$window.trigger('resize');
-            }, delayInView);
-        }
+        let delayInView = 500; // (this.page.context == 'static') ? 500 : 1500;
+        setTimeout(() => {
+            this.initInView();
+            // this.page.router.$window.trigger('resize');
+        }, delayInView);
 
         this.inViewDuration = 800;
 
-        this.inViewOffset = '75%';
+        this.inViewOffset = "75%";
 
-        if (this.$cont[0].getAttribute('data-inview-offset')){
-            this.inViewOffset = this.$cont[0].getAttribute('data-inview-offset');
+        if (this.$cont[0].getAttribute("data-inview-offset")) {
+            this.inViewOffset =
+                this.$cont[0].getAttribute("data-inview-offset");
         }
 
-        this.index = Number(this.$cont[0].getAttribute('data-index'));
+        this.index = Number(this.$cont[0].getAttribute("data-index"));
     }
 
-    initEvents () {
+    initEvents() {
         super.initEvents();
     }
 
-    destroyEvents () {
+    destroyEvents() {
         super.destroyEvents();
     }
-    
-    initInView () {
+
+    initInView() {
         // super.initInView();
 
-        if (BootstrapMedia.isMinSM()) { // this.page.router.deviceType == 'desktop' && 
+        // if (BootstrapMedia.isMinSM()) {
+        // this.page.router.deviceType == 'desktop' &&
 
-            this.waypoint = [];
-            this.isInView = false;
+        this.waypoint = [];
+        this.isInView = false;
 
-            // console.log('👀 INVIEW - '+this.id+' - Init');
-            // console.log('offset : '+this.inViewOffset);
-            // console.log('---');
+        // console.log('👀 INVIEW - '+this.id+' - Init');
+        // console.log('offset : '+this.inViewOffset);
+        // console.log('---');
 
-            this.waypoint = new Waypoint({
-                element: this.$cont[0],
-                handler: this.onInView.bind(this),
-                offset: this.inViewOffset
-            });
-        }
+        this.waypoint = new Waypoint({
+            element: this.$cont[0],
+            handler: this.onInView.bind(this),
+            offset: this.inViewOffset,
+        });
+        // }
     }
 
-    onInView (index) {
+    onInView(index) {
         // console.log('👀 INVIEW - '+this.id+' - on view');
 
-        if(!this.isInView){
+        if (!this.isInView) {
             this.isInView = true;
-            Utils.addClass(this.$cont[0], 'in-view');
+            Utils.addClass(this.$cont[0], "in-view");
             // console.log('👀 INVIEW - '+this.id+' - OK');
             this.inViewAnimation();
         }
         // else console.log('< already Inview');
     }
 
-    inViewAnimation () {
+    inViewAnimation() {
         // console.log('👀 INVIEW - '+this.id+' - Animation');
-        
+
         setTimeout(() => {
-            Utils.addClass(this.$cont[0], 'in-view-finished');
+            Utils.addClass(this.$cont[0], "in-view-finished");
         }, this.inViewDuration);
     }
 }

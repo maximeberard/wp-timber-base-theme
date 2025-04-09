@@ -29,6 +29,8 @@ requirejs.config({
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/loglevel/dist/loglevel.min",
         waypoint:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/waypoints/lib/noframework.waypoints",
+        isotope:
+            "/wordpress/wp-content/themes/wordpress/node_modules/isotope-layout/dist/isotope.pkgd",
         masonry:
             "/wordpress/wp-content/themes/wp-timber-base-theme/node_modules/masonry-layout/dist/masonry.pkgd",
         // Utils functions and classes

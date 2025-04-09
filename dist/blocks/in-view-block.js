@@ -1,5 +1,5 @@
-define(['exports', 'jquery', 'utils/utils', 'waypoint', 'blocks/default-block', 'utils/bootstrapMedia'], function (exports, _jquery, _utils, _waypoint, _defaultBlock, _bootstrapMedia) {
-    'use strict';
+define(["exports", "jquery", "utils/utils", "waypoint", "blocks/default-block", "utils/bootstrapMedia"], function (exports, _jquery, _utils, _waypoint, _defaultBlock, _bootstrapMedia) {
+    "use strict";
 
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -60,23 +60,21 @@ define(['exports', 'jquery', 'utils/utils', 'waypoint', 'blocks/default-block', 
 
             // console.log('👀 In view block');
 
-            if (this.page.context == 'static') {
-                var delayInView = 500; // (this.page.context == 'static') ? 500 : 1500;
-                setTimeout(function () {
-                    _this2.initInView();
-                    // this.page.router.$window.trigger('resize');
-                }, delayInView);
-            }
+            var delayInView = 500; // (this.page.context == 'static') ? 500 : 1500;
+            setTimeout(function () {
+                _this2.initInView();
+                // this.page.router.$window.trigger('resize');
+            }, delayInView);
 
             this.inViewDuration = 800;
 
-            this.inViewOffset = '75%';
+            this.inViewOffset = "75%";
 
-            if (this.$cont[0].getAttribute('data-inview-offset')) {
-                this.inViewOffset = this.$cont[0].getAttribute('data-inview-offset');
+            if (this.$cont[0].getAttribute("data-inview-offset")) {
+                this.inViewOffset = this.$cont[0].getAttribute("data-inview-offset");
             }
 
-            this.index = Number(this.$cont[0].getAttribute('data-index'));
+            this.index = Number(this.$cont[0].getAttribute("data-index"));
         };
 
         InviewBlock.prototype.initEvents = function initEvents() {
@@ -90,22 +88,22 @@ define(['exports', 'jquery', 'utils/utils', 'waypoint', 'blocks/default-block', 
         InviewBlock.prototype.initInView = function initInView() {
             // super.initInView();
 
-            if (_bootstrapMedia.BootstrapMedia.isMinSM()) {
-                // this.page.router.deviceType == 'desktop' && 
+            // if (BootstrapMedia.isMinSM()) {
+            // this.page.router.deviceType == 'desktop' &&
 
-                this.waypoint = [];
-                this.isInView = false;
+            this.waypoint = [];
+            this.isInView = false;
 
-                // console.log('👀 INVIEW - '+this.id+' - Init');
-                // console.log('offset : '+this.inViewOffset);
-                // console.log('---');
+            // console.log('👀 INVIEW - '+this.id+' - Init');
+            // console.log('offset : '+this.inViewOffset);
+            // console.log('---');
 
-                this.waypoint = new Waypoint({
-                    element: this.$cont[0],
-                    handler: this.onInView.bind(this),
-                    offset: this.inViewOffset
-                });
-            }
+            this.waypoint = new Waypoint({
+                element: this.$cont[0],
+                handler: this.onInView.bind(this),
+                offset: this.inViewOffset
+            });
+            // }
         };
 
         InviewBlock.prototype.onInView = function onInView(index) {
@@ -113,7 +111,7 @@ define(['exports', 'jquery', 'utils/utils', 'waypoint', 'blocks/default-block', 
 
             if (!this.isInView) {
                 this.isInView = true;
-                _utils.Utils.addClass(this.$cont[0], 'in-view');
+                _utils.Utils.addClass(this.$cont[0], "in-view");
                 // console.log('👀 INVIEW - '+this.id+' - OK');
                 this.inViewAnimation();
             }
@@ -126,7 +124,7 @@ define(['exports', 'jquery', 'utils/utils', 'waypoint', 'blocks/default-block', 
             // console.log('👀 INVIEW - '+this.id+' - Animation');
 
             setTimeout(function () {
-                _utils.Utils.addClass(_this3.$cont[0], 'in-view-finished');
+                _utils.Utils.addClass(_this3.$cont[0], "in-view-finished");
             }, this.inViewDuration);
         };
 

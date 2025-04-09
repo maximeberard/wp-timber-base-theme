@@ -1,0 +1,107 @@
+/**
+ * Copyright © 2016, Maxime Bérard
+ *
+ * @file projects.js
+ * @copyright Maxime Bérard 2016
+ * @author Maxime Bérard
+ */
+
+import { Utils } from "utils/utils";
+// import { BootstrapMedia } from "utils/bootstrapMedia";
+import { DefaultPage } from "pages/default-page";
+
+export class Projects extends DefaultPage {
+    init() {
+        super.init();
+
+        console.log("PROJECTS - with filters");
+
+        // this.$projectsCategories = this.$cont.find(".projects-categories");
+        this.$projectsCategory = this.$cont.find(".projects-filter");
+        this.filterActive = null;
+
+        this.$list = this.$cont.find(".projects-list");
+        this.$project = this.$list.find(".projects-list-item");
+
+        // this.masonry = null;
+        // setTimeout(() => {
+        //     this.initMasonry();
+        // }, 1000);
+    }
+
+    initEvents() {
+        super.initEvents();
+        this.$projectsCategory.on(
+            "click",
+            this.projectsCategoryOnClick.bind(this)
+        );
+    }
+
+    destroyEvents() {
+        super.destroyEvents();
+        this.$projectsCategory.off(
+            "click",
+            this.projectsCategoryOnClick.bind(this)
+        );
+    }
+
+    // initMasonry() {
+    //     if (this.masonry == null) {
+    //         this.masonry = new Isotope(".projects-list.grid", {
+    //             itemSelector: ".project-list-item-grid.show",
+    //             horizontalOrder: true,
+    //             transitionDuration: "0.8s",
+    //             columnWidth: ".project-list-item-grid",
+    //             stamp: ".stamp",
+    //         });
+    //     } else this.masonry.layout();
+    // }
+
+    projectsCategoryOnClick(e) {
+        e.preventDefault();
+
+        // if (e.currentTarget.className.indexOf("active") >= 0) return;
+
+        let name = e.currentTarget.getAttribute("data-name");
+
+        console.log("FILTER ON CLICK - " + name);
+        console.log("Filter active");
+        console.log(this.filterActive);
+        console.log("----");
+
+        // Activate
+        if (e.currentTarget.className.indexOf("active") == -1) {
+            this.filterActive = name;
+
+            this.$projectsCategory.removeClass("active");
+            Utils.addClass(e.currentTarget, "active");
+
+            // Disable
+        } else {
+            Utils.removeClass(e.currentTarget, "active");
+            this.filterActive = null;
+        }
+
+        this.$project.removeClass("show");
+
+        let projectSelector = ".projects-list-item";
+
+        // SINGLE
+        if (this.filterActive !== null) {
+            projectSelector += "." + this.filterActive;
+        }
+
+        let projectFiltered = this.$cont.find(projectSelector);
+
+        projectFiltered.addClass("show");
+
+        // if (this.masonry !== null) {
+        //     this.masonry.arrange({ filter: projectSelector });
+        // }
+        // this.onResize();
+    }
+
+    onResize(e) {
+        super.onResize();
+    }
+}

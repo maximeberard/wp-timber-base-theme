@@ -68,7 +68,8 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
 
             // this.$backTop = $('#back-top');
 
-            _this.minifyLimit = _bootstrapMedia.BootstrapMedia.isMinMD() ? 165 : 50;
+            _this.minifyLimit = 50; //BootstrapMedia.isMinMD() ? 165 : 50;
+            _this.scrollPos = window.scrollY;
 
             _this.opened = false;
             return _this;
@@ -109,11 +110,19 @@ define(["exports", "jquery", "utils/utils", "utils/debounce", "abstract-nav", "u
         };
 
         Nav.prototype.onScroll = function onScroll(e) {
-            if (window.scrollY > this.minifyLimit) {
-                if (!this.minified) this.minify();
-            } else {
-                if (this.minified) this.unminify();
-            }
+            var dir = window.scrollY > this.scrollPos ? "down" : "up";
+
+            // Unminify on scroll up
+            if (dir == "up" && this.minified) this.unminify();else if (dir == "down" && !this.minified && this.scrollPos > 0) this.minify();
+
+            this.scrollPos = window.scrollY;
+
+            // Classic : with minify limit
+            // if (window.scrollY > this.minifyLimit) {
+            //     if (!this.minified) this.minify();
+            // } else {
+            //     if (this.minified) this.unminify();
+            // }
         };
 
         Nav.prototype.minify = function minify() {

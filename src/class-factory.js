@@ -7,6 +7,7 @@
 import log from "loglevel";
 import { Page } from "pages/page";
 import { Home } from "pages/home";
+// import { Projects } from "pages/projects";
 import { AbstractBlock } from "abstract-block";
 import { InviewBlock } from "blocks/in-view-block";
 // import {ContactBlock} from "blocks/contact-block";
@@ -33,6 +34,9 @@ export class ClassFactory {
             case "home":
                 log.debug("Create new home");
                 return new Home(router, $cont, context, nodeType, isHome);
+            // case "projects":
+            //     log.debug("Create new projects");
+            //     return new Projects(router, $cont, context, nodeType, isHome);
             default:
                 log.info(
                     '"' + nodeTypeName + '" has no defined route, using Page.'
@@ -59,8 +63,12 @@ export class ClassFactory {
             // case "horizontal-scroll":
             //     return new HorizontalScroll(page, $cont, nodeTypeName);
             default:
-            /*log.info('    "' + nodeTypeName + '" has no defined route, using AbstractBlock.');
-                return new AbstractBlock(page, $cont, nodeTypeName);*/
+                log.info(
+                    '    "' +
+                        nodeTypeName +
+                        '" has no defined route, using AbstractBlock.'
+                );
+                return new AbstractBlock(page, $cont, nodeTypeName);
         }
     }
 }

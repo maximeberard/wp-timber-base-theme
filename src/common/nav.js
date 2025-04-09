@@ -32,7 +32,8 @@ export class Nav extends AbstractNav {
 
         // this.$backTop = $('#back-top');
 
-        this.minifyLimit = BootstrapMedia.isMinMD() ? 165 : 50;
+        this.minifyLimit = 50; //BootstrapMedia.isMinMD() ? 165 : 50;
+        this.scrollPos = window.scrollY;
 
         this.opened = false;
     }
@@ -78,11 +79,21 @@ export class Nav extends AbstractNav {
     }
 
     onScroll(e) {
-        if (window.scrollY > this.minifyLimit) {
-            if (!this.minified) this.minify();
-        } else {
-            if (this.minified) this.unminify();
-        }
+        let dir = window.scrollY > this.scrollPos ? "down" : "up";
+
+        // Unminify on scroll up
+        if (dir == "up" && this.minified) this.unminify();
+        else if (dir == "down" && !this.minified && this.scrollPos > 0)
+            this.minify();
+
+        this.scrollPos = window.scrollY;
+
+        // Classic : with minify limit
+        // if (window.scrollY > this.minifyLimit) {
+        //     if (!this.minified) this.minify();
+        // } else {
+        //     if (this.minified) this.unminify();
+        // }
     }
 
     minify() {

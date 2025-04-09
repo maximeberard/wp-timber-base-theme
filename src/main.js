@@ -15,6 +15,7 @@ import { ClassFactory } from "class-factory";
 // import { BootstrapMedia } from "utils/bootstrapMedia";
 // import { waypoint } from 'waypoint';
 // import scrollTo from "scrollTo";
+// import Isotope from "isotope";
 // import Masonry from "masonry";
 // import Hammer from "Hammer";
 // import actual from 'actual';

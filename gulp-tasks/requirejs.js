@@ -44,6 +44,8 @@ gulp.task("requirejs", ["babel", "clean-build"], function () {
                     loglevel: "./../node_modules/loglevel/dist/loglevel.min",
                     waypoint:
                         "./../node_modules/waypoints/lib/noframework.waypoints",
+                    isotope:
+                        "./../node_modules/isotope-layout/dist/isotope.pkgd",
                     masonry:
                         "./../node_modules/masonry-layout/dist/masonry.pkgd",
                     // Utils functions and classes

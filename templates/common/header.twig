@@ -2,6 +2,8 @@
 <html class="no-js" {{ site.language_attributes }} itemscope itemtype="http://schema.org/WebPage">
     <head>
 
+    {# <meta name="robots" content="noindex, nofollow" /> #}
+
     {% set shareImage = site.theme.link ~ '/img/share-image.jpg'  %}
     {% set shareUrl = site.home_url %}
     {% if post %}
@@ -24,7 +26,7 @@
         {% set desc = fn('get_post_meta',post.id, '_yoast_wpseo_metadesc', true) %}
     {% endif %}
 
-    {# function('wp_title') #}
+    {# fn('wp_title') #}
     <title>{{ site.title }}{% if title %} - {{ title }}{% endif %}{% if desc %} - {{ desc }}{% endif %}</title>
 
     <meta charset="{{ site.charset }}">
@@ -55,7 +57,7 @@
     <meta name="twitter:url" content="{{ shareUrl }}">
     <meta name="twitter:image" content="{{ shareImage }}">
 
-    {# {{fn('wp_head')}} #}
+    {# {{ fn('wp_head') }} #}
 
     <!--
     # Gulp injected styles
@@ -64,7 +66,7 @@
     -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ site.theme.link }}/css/vendor-2f5a88b62c.css">
-    <link rel="stylesheet" href="{{ site.theme.link }}/css/style-a5839d52ba.css">
+    <link rel="stylesheet" href="{{ site.theme.link }}/css/style-e773c13e2a.css">
     <!-- endinject -->
 
     {# {% set gtagId = '' %}
