@@ -1,7 +1,5 @@
 {%- macro svg(classes, icon, id) -%}
-    {% spaceless %}
-        <svg class="{{ classes|join(' ') }} {{ icon }}" {% if id %} id="{{ id }}" {% endif %}>
-            <use xlink:href="#{{ icon }}"></use>
-        </svg>
-    {% endspaceless %}
+<svg class="{{ classes|join(' ') }} {{ icon }}" {% if id %} id="{{ id }}" {% endif %}>
+<use xlink:href="#{{ icon }}"></use>
+</svg>
 {%- endmacro -%}

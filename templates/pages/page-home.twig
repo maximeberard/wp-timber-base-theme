@@ -8,7 +8,8 @@
             <h1 class="page-title">{{post.title}}</h1>
             {{post.content}}
 
-            {# Sample posts loop
+{# Sample posts loop #}
+
             {% for post in posts %}
                 <a class="col-xs-12 col-sm-4 post-link post-link-{{ loop.index0 }}" href="{{ fn('get_permalink', post.ID) }}">
                     <figure class="post-image">
@@ -18,7 +19,7 @@
                     <div class="post-text">
                         <span class="post-date">{{ post.post_date|date('d F Y') }}</span>
                         <h3 class="post-title">{{ post.post_title }}</h3>
-                        <span class="post-excerpt">{{ post.preview.length(25).read_more(false) }}</span>
+                        <span class="post-excerpt">{{ post.excerpt.length(25).read_more(false) }}</span>
                         <span class="post-categories">
                         {% for category in post.categories %}
                         <span class="post-category">{% if not loop.first %}, {% endif %}{{ category.name|capitalize }}</span>
@@ -26,7 +27,7 @@
                         </span>
                     </div>
                 </a>
-            {% endfor %} #}
+            {% endfor %}
         </div>
     </div>
 

@@ -105,7 +105,7 @@ add_action( 'widgets_init', 'register_custom_widget_area' );
 $composer_autoload = __DIR__ . '/vendor/autoload.php';
 if ( file_exists( $composer_autoload ) ) {
 	require_once $composer_autoload;
-	$timber = new Timber\Timber();
+    Timber\Timber::init();
 }
 
 add_filter('timber/loader/loader', function($loader){
@@ -178,7 +178,7 @@ class StarterSite extends Timber\Site {
 		// $context['foo']   = 'bar';
 		// $context['stuff'] = 'I am a value set in your functions.php file';
 		// $context['notes'] = 'These values are available everytime you call Timber::context();';
-		$context['menu']  = new Timber\Menu();
+		$context['menu']  = Timber::get_menu();
 		$context['site']  = $this;
         $lang = get_bloginfo("language");
         $context['lang'] = $lang;
