@@ -10,8 +10,9 @@ import { Home } from "pages/home";
 // import { Projects } from "pages/projects";
 import { AbstractBlock } from "abstract-block";
 import { InviewBlock } from "blocks/in-view-block";
-// import {ContactBlock} from "blocks/contact-block";
+// import { ContactBlock } from "blocks/contact-block";
 // import { HorizontalScroll } from "blocks/horizontal-scroll";
+// import { Carousel } from "blocks/carousel";
 
 /**
  * This class need to be redefined for each of your projects.
@@ -62,6 +63,8 @@ export class ClassFactory {
             //     return new ContactBlock(page, $cont, nodeTypeName);
             // case "horizontal-scroll":
             //     return new HorizontalScroll(page, $cont, nodeTypeName);
+            // case "carousel":
+            //     return new Carousel(page, $cont, nodeTypeName);
             default:
                 log.info(
                     '    "' +
